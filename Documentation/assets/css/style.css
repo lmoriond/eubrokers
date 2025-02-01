@@ -1,0 +1,264 @@
+:root {
+	--clr-dark: #0f172a;
+	--clr-start: rgba(4, 208, 217);
+	--clr-end: rgba(3, 239, 98);
+	--clr-gray-1: #94A3B8;
+	--clr-gray-2: #E2E8F0;
+	--clr-gray-3: rgb(30,41,59);
+	--clr-pink: violet;
+}
+
+/*  
+  -------------------------------------------
+  -----      CSS for the font used      -----
+  -------------------------------------------
+*/
+
+@import url('./font/inter.css');
+
+body {
+    font-family: 'Inter var', sans-serif;
+    font-feature-settings: "cv02","cv03","cv04","cv11";
+	background: var(--clr-dark);;
+	color: var(--clr-gray-1);
+}
+
+.clr-dark {
+	color: var(--clr-dark) !important;
+}
+.clr-start {
+	color: var(--clr-start) !important;
+}
+.clr-end {
+	color: var(--clr-end) !important;
+}
+.clr-gray-1 {
+	color: var(--clr-gray-1) !important;
+}
+.clr-gray-2 {
+	color: var(--clr-gray-2) !important;
+}
+.clr-gray-3 {
+	color: var(--clr-gray-3) !important;
+}
+
+.background-dark {
+	background: var(--clr-dark) !important;
+}
+.background-gray-1 {
+	background: var(--clr-gray-1) !important;
+}
+.background-gray-2 {
+	background: var(--clr-gray-2) !important;
+}
+.background-gray-3 {
+	background: var(--clr-gray-3) !important;
+}
+
+.border-bottom-gray {
+	border-bottom: 1px solid var(--clr-gray-3) !important;
+}
+.border-end-gray {
+	border-right: 1px solid var(--clr-gray-3) !important;
+}
+.border-start-gray {
+	border-left: 1px solid var(--clr-gray-3) !important;
+}
+
+a {
+	color: var(--clr-end);
+}
+
+/*Editor*/
+
+.editor {
+	margin-top: 1rem !important;
+	margin-bottom: 1rem !important;
+}
+
+.editor-header {
+	background: var(--clr-gray-3) !important;
+	border-top-left-radius: var(--bs-border-radius) !important;
+	border-top-right-radius: var(--bs-border-radius) !important;
+	padding-top: 0.5rem !important;
+	padding-bottom: 0.5rem !important;
+	padding-right: 0.5rem !important;
+	padding-left: 0.5rem !important;
+	align-items: center !important;
+	display: flex !important;
+	justify-content: space-between !important;
+}
+
+.editor-footer {
+	max-height: 30rem !important;
+	overflow: auto !important;
+	border-bottom-right-radius: var(--bs-border-radius) !important;
+	border-bottom-left-radius: var(--bs-border-radius) !important;
+	background: #1e293b !important;
+}
+
+.editor-body {
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+	border-top-right-radius: 0px !important;
+	border-top-left-radius: 0px !important;
+	border-bottom-right-radius: var(--bs-border-radius) !important;
+	border-bottom-left-radius: var(--bs-border-radius) !important;
+	background: #1e293b !important;
+}
+
+/*Browser*/
+
+.browser {
+	margin-top: 1rem !important;
+	margin-bottom: 1rem !important;
+}
+.browser-header {
+	background: var(--clr-gray-2) !important;
+	border-top-left-radius: var(--bs-border-radius) !important;
+	border-top-right-radius: var(--bs-border-radius) !important;
+	padding-top: 0.5rem !important;
+	padding-bottom: 0.5rem !important;
+	padding-right: 0.5rem !important;
+	padding-left: 0.5rem !important;
+	display: flex !important;
+	justify-content: space-between !important;
+	align-items: center !important;
+}
+.browser-body {
+	background: white !important;
+	border-bottom-right-radius: var(--bs-border-radius) !important;
+	border-bottom-left-radius: var(--bs-border-radius) !important;
+	padding: 1rem !important;
+	color: black;
+}
+
+.browser-body h1, .browser-body h2, .browser-body h3, .browser-body h4, .browser-body h5, .browser-body h6 {
+	color: black;
+}
+ 
+
+
+h1, h2, h3, h4, h5, h6 {
+	color: var(--clr-gray-2);
+}
+
+code {
+	color: var(--clr-pink);
+}
+
+.vr {
+	background-color: var(--clr-gray-3) !important;
+	opacity: 1 !important;
+}
+.font-size-14px {
+	font-size: 14px !important;
+}
+
+.active-start {
+	background: rgba(4, 208, 217, 0.1) !important;
+	color: rgba(4, 208, 217) !important;
+}
+.active-start-hover:hover {
+	background: rgba(4, 208, 217, 0.1) !important;
+	color: rgba(4, 208, 217) !important;
+}
+
+#side-bar-start .active {
+	background: rgba(4, 208, 217, 0.1) !important;
+	color: rgba(4, 208, 217) !important;
+}
+
+#side-bar-end .nav-pills .nav-link {
+	border-radius: 0px !important;
+}
+#side-bar-end .active {
+	background: rgba(3, 239, 98, 0.01) !important;
+	color: var(--clr-end) !important;
+	border-radius: 0px !important;
+	border: 0px !important;
+	border-left: 2px solid var(--clr-end) !important;
+}
+
+.active-end-hover:hover {
+	background: rgba(3, 239, 98, 0.01) !important;
+	color: var(--clr-end) !important;
+	border-radius: 0px !important;
+	border: 0px !important;
+	border-left: 2px solid var(--clr-end) !important;
+}
+
+.side-bar-end-css {
+	height: calc(100vh - 6rem); 
+	overflow: scroll; 
+	top: 6rem;
+}
+
+.side-bar-start-css {
+	height: calc(100vh - 6rem); 
+	overflow: scroll; 
+	top: 6rem;
+}
+
+.btn-back-to-top {
+	width: 2.5rem; 
+	height: 2.5rem;
+	z-index: 10;
+}
+.z-index-2000 {
+	z-index: 2000;
+}
+
+* {
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--clr-gray-1) transparent !important;
+}
+  
+*::-webkit-scrollbar {
+	background-color: initial !important;
+	width: 8px !important;
+	height: 8px !important;
+}
+  
+*::-webkit-scrollbar-track {
+	background: transparent !important;
+}
+  
+*::-webkit-scrollbar-thumb {
+	background-color: var(--clr-gray-1) !important;
+	border-radius: 20px !important;
+/*	border: 2px solid transparent !important;*/
+	background-clip: content-box !important;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background-color: #a8bbbf !important;
+}
+
+
+/* Lines of the Toggler */
+.toggler-icon{
+    background-color: var(--clr-gray-1) !important;
+}
+
+.navbar-toggler.collapsed .toggler-icon {
+    background-color: var(--clr-gray-1) !important;
+}
+
+
+
+
+/*  
+  ----------------------------------------------------  
+  -----      CSS for the button back to top      -----
+  ----------------------------------------------------
+*/
+
+.btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    z-index: 10;
+}
+
