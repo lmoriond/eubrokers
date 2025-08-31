@@ -583,762 +583,280 @@
 		</div>
 	</div>
 	
-	<!-- compare popular brokers -->
-	<div class="overflow-hidden py-5">
-		<div class="container py-5">
-			<div class="max-w-2xl pt-7 pb-9">
-				<h2 class="m-0 text-primary-emphasis text-base leading-7 fw-semibold">
-					Compare Brokers in depth
-				</h2>
-				<div class="m-0 mt-2 text-body-emphasis text-4xl leading-snug tracking-tight fw-bold" id="Brokers">
-					These are the most popular brokers used by the community.
-				</div>
-			</div>
 
-			<style>
-				.table-container {
-					overflow-x: auto;
-					margin-bottom: 1rem;
+
+	<div class="container my-5">
+		<div class="max-w-2xl pt-7 pb-4">
+			<h2 class="m-0 text-primary-emphasis text-base leading-7 fw-semibold">
+				These are the most popular brokers used by the community.
+			</h2>
+			<div class="m-0 mt-2 text-body-emphasis text-4xl leading-snug tracking-tight fw-bold">
+				Compare Brokers in depth.
+			</div>
+		</div>
+		<div class="table-container">
+			<div class="table-content">
+				<input type="text" id="dynamicTableSearch" class="form-control mb-3" placeholder="Filter table...">
+				<table class="table table-hover align-middle" id="dynamicTable">
+					<thead>
+						<tr>
+							<th scope="col" data-col="0" class="sortable fw-bold">Broker <span class="sort-indicator"></span></th>
+							<th scope="col" class="fw-bold">Info</th>
+							<th scope="col" data-col="1" class="sortable fw-bold">Maintenance <span class="sort-indicator"></span></th>
+							<th scope="col" data-col="2" class="sortable fw-bold">Stocks Fees<span class="sort-indicator"></span></th>
+							<th scope="col" data-col="3" class="sortable fw-bold">ETF Fees<span class="sort-indicator"></span></th>
+							<th scope="col" data-col="4" class="sortable fw-bold">FX Fee<span class="sort-indicator"></span></th>
+							<th scope="col" data-col="5" class="sortable fw-bold">Min Deposit<span class="sort-indicator"></span></th>
+							<th scope="col" data-col="6" class="sortable fw-bold">Withdrawal<span class="sort-indicator"></span></th>
+							<th scope="col" data-col="7" class="sortable fw-bold">Inactivity<span class="sort-indicator"></span></th>
+							<th scope="col" data-col="8" class="sortable fw-bold">Securities Transfer<span class="sort-indicator"></span></th>
+							<th scope="col" data-col="9" class="sortable fw-bold">Regulator<span class="sort-indicator"></span></th>
+							<th scope="col" data-col="10" class="sortable fw-bold">Protection<span class="sort-indicator"></span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>MyInvestor</td>
+							<td>
+								<a href="https://newapp.myinvestor.es/do/signup?promotionalCode=G9GLY" data-bs-toggle="tooltip" data-bs-title="Spanish neobank, good for funds not trading(the app is bad). No custody or inactivity fees.">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
+										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+									</svg>
+								</a>
+							</td>
+							<td>€0</td><td>0.12%</td><td>0.12%</td><td>0.5%</td><td>€0</td><td>€0</td><td>€0</td><td>Yes</td><td>CNMV</td><td>€100k</td>
+						</tr>
+						<tr>
+							<td>Trade Republic</td>
+							<td>
+								<a href="https://traderepublic.com/en-es/nocodereferral?code=l7rwnx7c" data-bs-toggle="tooltip" data-bs-title="German broker,low transparency in spreads, free savings plans, €1 per trade, wide asset selection, BaFin regulated.">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
+										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+									</svg>
+								</a>
+							</td>
+							<td>€0</td><td>€1</td><td>€1</td><td>0.5%</td><td>€1</td><td>€0</td><td>€0</td><td>With fee</td><td>BaFin/CNMV/BCE</td><td>€100k</td>
+						</tr>
+						<tr>
+							<td>Lightyear</td>
+							<td>
+								<a href="https://lightyear.com/en-es/profile/lucas496" data-bs-toggle="tooltip" data-bs-title="UK/EU broker, 0.1% fee for stocks, no ETF fees, low FX, FCA & EFSA regulated.">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
+										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+									</svg>
+								</a>
+							</td>
+							<td>€0</td><td>0.1%</td><td>€0</td><td>0.35%</td><td>€0</td><td>€0</td><td>€0</td><td>With fee</td><td>FCA/EFSA</td><td>£85k/€20k</td>
+						</tr>
+						<tr>
+							<td>Trading 212</td>
+							<td>
+								<a href="https://www.trading212.com/" data-bs-toggle="tooltip" data-bs-title="Commission-free stocks/ETFs, pies for auto-invest, low FX, FCA/CySEC regulated.">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
+										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+									</svg>
+								</a>
+							</td>
+							<td>€0</td><td>€0</td><td>€0</td><td>0.5%</td><td>€1</td><td>€0</td><td>€0</td><td>No</td><td>FCA/CySEC/BaFin</td><td>£85k/€20k</td>
+						</tr>
+						<tr>
+							<td>eToro</td>
+							<td>
+								<a href="https://www.etoro.com/" data-bs-toggle="tooltip" data-bs-title="Social trading, zero commission, $5 withdrawal, inactivity fee after 12 months.">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
+										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+									</svg>
+								</a>
+							</td>
+							<td>€0</td><td>€0</td><td>€0</td><td>0.5%</td><td>€50</td><td>€5</td><td>€10/mo</td><td>No</td><td>FCA/CySEC</td><td>€20k</td>
+						</tr>
+						<tr>
+							<td>DeGiro</td>
+							<td>
+								<a href="https://www.degiro.es/" data-bs-toggle="tooltip" data-bs-title="Dutch broker, low fees, wide market access, no inactivity fee, AFM regulated.">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
+										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+									</svg>
+								</a>
+							</td>
+							<td>€0</td><td>€1</td><td>€1-3</td><td>0.25%</td><td>€0</td><td>€0</td><td>€0</td><td>With fee</td><td>FCA/AFM/BaFin/CNMV</td><td>€100k</td>
+						</tr>
+						<tr>
+							<td>Interactive Brokers</td>
+							<td>
+								<a href="https://www.interactivebrokers.com/es/home.php" data-bs-toggle="tooltip" data-bs-title="Global access, advanced platform, very low FX, wide asset range, FCA/CBI regulated.">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
+										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+									</svg>
+								</a>
+							</td>
+							<td>€0</td><td>€1</td><td>€1</td><td>0.002%</td><td>€0</td><td>€0</td><td>€0</td><td>With fee</td><td>FCA/CBI</td><td>€100k</td>
+						</tr>
+						<tr>
+							<td>XTB</td>
+							<td>
+								<a href="https://www.xtb.com" data-bs-toggle="tooltip" data-bs-title="Polish broker, commission-free stocks/ETFs, inactivity fee after 12 months above 100K in assets.">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
+										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+									</svg>
+								</a>
+							</td>
+							<td>€0</td><td>€0</td><td>€0</td><td>0.5%</td><td>€0</td><td>€0</td><td>€10/mo</td><td>No</td><td>
+FCA/CySEC/CNMV/KNF</td><td>£85k/€20k</td>
+						</tr>
+						<tr>
+							<td>Revolut</td>
+							<td>
+								<a href="https://revolut.com/referral/?referral-code=lucasv5js!AUG2-25-AR&geo-redirect" data-bs-toggle="tooltip" data-bs-title="App-based, free plan has limits, paid plans offer more trades, FX up to 1%, FCA regulated.">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
+										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+									</svg>
+								</a>
+							</td>
+							<td>€0</td><td>0.25%</td><td>0.25%</td><td>0.5% to 1%</td><td>0.5%-1%</td><td>€0</td><td>€0</td><td>With fee</td><td>FCA/CNMV/MiFID</td><td>€100k</td>
+						</tr>
+						<tr>
+							<td>Freedom24</td>
+							<td>
+								<a href="https://lp.freedom24.com/" data-bs-toggle="tooltip" data-bs-title="Freedom Holding Corp. is a NASDAQ-listed public company, Monthly fee based on filled contracts, varies with activity.">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
+										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+									</svg>
+								</a>
+							</td>
+							<td>€0</td><td>0.5% +0.012€</td><td>0.5% +0.012€</td><td>0.01%</td><td>€0</td><td>€7</td><td>€0</td><td>€100 per ISIN</td><td>CySEC/MiFID/SEC/BaFin</td><td>€20k</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script>
+	// Improved sorting logic for all columns with visual indicators
+	let sortDirection = Array(12).fill(true);
+
+	function clearSortIndicators() {
+		document.querySelectorAll('#dynamicTable thead th .sort-indicator').forEach(span => {
+			span.textContent = '';
+		});
+	}
+
+	function sortTable(n) {
+		const table = document.getElementById("dynamicTable");
+		const tbody = table.tBodies[0];
+		const rows = Array.from(tbody.rows);
+		const dir = sortDirection[n] ? 1 : -1;
+		sortDirection[n] = !sortDirection[n];
+
+		// Remove all sort indicators, then set the current one
+		clearSortIndicators();
+		const th = table.querySelector(`th[data-col="${n}"] .sort-indicator`);
+		if (th) th.textContent = sortDirection[n] ? " ▲" : " ▼";
+
+		// The "Info" column is always at index 1, so for column n:
+		// If n == 0 (Broker), use cell 0
+		// If n >= 1, use cell n+1 (skip Info column)
+		rows.sort((rowA, rowB) => {
+			let x, y;
+			if (n === 0) {
+				x = rowA.cells[0].textContent.trim();
+				y = rowB.cells[0].textContent.trim();
+			} else {
+				x = rowA.cells[n + 1].textContent.trim();
+				y = rowB.cells[n + 1].textContent.trim();
+			}
+
+			// Try to parse as number (including currency/percent)
+			const xNum = parseFloat(x.replace(/[^0-9.\-]/g, ''));
+			const yNum = parseFloat(y.replace(/[^0-9.\-]/g, ''));
+			const xIsNum = !isNaN(xNum) && x.match(/[0-9]/);
+			const yIsNum = !isNaN(yNum) && y.match(/[0-9]/);
+
+			if (xIsNum && yIsNum) {
+				return dir * (xNum - yNum);
+			} else {
+				return dir * x.localeCompare(y, undefined, {numeric: true, sensitivity: 'base'});
+			}
+		});
+
+		// Re-append sorted rows
+		rows.forEach(row => tbody.appendChild(row));
+	}
+
+	// Attach sort to all headers
+	document.querySelectorAll('#dynamicTable thead th.sortable').forEach(th => {
+		th.style.cursor = "pointer";
+		th.addEventListener('click', function() {
+			sortTable(Number(this.getAttribute('data-col')));
+		});
+	});
+
+	// Filter function for table
+	document.getElementById("dynamicTableSearch").addEventListener("keyup", function () {
+		let filter = this.value.toLowerCase();
+		let table = document.getElementById("dynamicTable");
+		let trs = table.getElementsByTagName("tr");
+		for (let i = 1; i < trs.length; i++) {
+			let tds = trs[i].getElementsByTagName("td");
+			let show = false;
+			for (let j = 0; j < tds.length; j++) {
+				if (tds[j] && tds[j].textContent.toLowerCase().indexOf(filter) > -1) {
+					show = true;
+					break;
 				}
-				.table-content {
-					min-width: 1600px;
+			}
+			trs[i].style.display = show ? "" : "none";
+		}
+		reinitTooltips();
+	});
+	</script>
+	<style>
+		#dynamicTable thead th {
+			background: none !important;
+		}
+		#dynamicTable tbody tr {
+			height: 70px;
+		}
+		#dynamicTable tbody tr > td {
+			vertical-align: middle !important;
+			padding-top: 18px !important;
+			padding-bottom: 18px !important;
+		}
+	</style>
+	<script>
+		// Add Bootstrap tooltip initialization for dynamic table info icons
+		document.addEventListener('DOMContentLoaded', function () {
+			var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+			tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+				new bootstrap.Tooltip(tooltipTriggerEl);
+			});
+		});
+	</script>
+	<script>
+		// Re-initialize tooltips after sorting/filtering
+		function reinitTooltips() {
+			var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+			tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+				if (!bootstrap.Tooltip.getInstance(tooltipTriggerEl)) {
+					new bootstrap.Tooltip(tooltipTriggerEl);
 				}
-			</style>
-			<div class="table-container">
-				<div class="table-content">
-					<div class="row align-items-center py-2 fw-bolder">
-						<div class="col-3 fs-3">
-							Brokers info
-						</div>
-						<div class="col-1">
-							MyInvestor
-						</div>
-						<div class="col-1">
-							Trade Republic
-						</div>
-						<div class="col-1">
-							Lightyear
-						</div>
-						<div class="col-1">
-							Trading 212
-						</div>
-						<div class="col-1">
-							eToro
-						</div>
-						<div class="col-1">
-							DeGiro
-						</div>
-						<div class="col-1">
-							Interactive Brokers
-						</div>
-						<div class="col-1">
-							XTB
-						</div>
-						<div class="col-1">
-							Revolut
-						</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-3 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Maintenance fees
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Revolut charges no account fee, however, if you opt for additional services like Trading Pro, there is a monthly subscription fee of €15" class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-1 text-body-secondary">
-							€0
-						</div>
-						<div class="col-1 text-body-secondary">
-							€0	
-						</div>
-						<div class="col-1 text-body-secondary">
-							€0
-						</div>
-						<div class="col-1 text-body-secondary">
-							€0
-						</div>
-						<div class="col-1 text-body-secondary">
-							€0
-						</div>
-						<div class="col-1 text-body-secondary">
-							€0
-						</div>
-						<div class="col-1 text-body-secondary">
-							€0
-						</div>
-						<div class="col-1 text-body-secondary">
-							€0
-						</div>
-						<div class="col-1 text-body-secondary">
-							€0
-						</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-3 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Stock Trading Fee
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Fee per trade. Some platforms have no fees in 'Savings Plans' or Revolut Plans. Watch out for spreads" class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-1 text-body-secondary">0.12%</div>
-						<div class="col-1 text-body-secondary">€1</div>
-						<div class="col-1 text-body-secondary">0.1%</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€1</div>
-						<div class="col-1 text-body-secondary">€1</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">0.25%</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-3 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									ETF Trading Fee
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Fee per ETF trade. Some platforms have no fees in 'Savings Plans' or Revolut Plans" class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-1 text-body-secondary">0.12%</div>
-						<div class="col-1 text-body-secondary">€1</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€1-3</div>
-						<div class="col-1 text-body-secondary">€1</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">0.25%</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-3 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									FX Fee
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Currency conversion fee" class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-1 text-body-secondary">0.5%</div>
-						<div class="col-1 text-body-secondary">0.5%</div>
-						<div class="col-1 text-body-secondary">0.35%</div>
-						<div class="col-1 text-body-secondary">0.15%</div>
-						<div class="col-1 text-body-secondary">0.5%</div>
-						<div class="col-1 text-body-secondary">0.25%</div>
-						<div class="col-1 text-body-secondary">0.002%</div>
-						<div class="col-1 text-body-secondary">0.5%</div>
-						<div class="col-1 text-body-secondary">0.5% to 1%</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-3 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Minimum Deposit
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Minimum amount to open account" class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€1</div>
-						<div class="col-1 text-body-secondary">€1</div>
-						<div class="col-1 text-body-secondary">€1</div>
-						<div class="col-1 text-body-secondary">€50</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-3 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Withdrawal Fee
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Fee for withdrawing funds" class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€5</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-3 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Inactivity Fee
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="eToro charges a $10 monthly if you do not log into your account for 12 consecutive months. XTB charges an inactivity fee of €10 per month if your account remains inactive for 12 consecutive months and no deposit is made within the previous 90 days." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€10/mo</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€0</div>
-						<div class="col-1 text-body-secondary">€10/mo</div>
-						<div class="col-1 text-body-secondary">€0</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-3 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Securities transfer
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="'Transfer securities depends on instrument and market, Lightyear is handled via email request." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-1 text-body-secondary">No</div>
-						<div class="col-1 text-body-secondary">With fee</div>
-						<div class="col-1 text-body-secondary">With fee</div>
-						<div class="col-1 text-body-secondary">No</div>
-						<div class="col-1 text-body-secondary">No</div>
-						<div class="col-1 text-body-secondary">With fee</div>
-						<div class="col-1 text-body-secondary">With fee</div>
-						<div class="col-1 text-body-secondary">No</div>
-						<div class="col-1 text-body-secondary">With fee</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-3 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Regulated By
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Regulatory authorities. Client assets are often in a separate account from the broker's own assets." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-1 text-body-secondary">(Bank) CNMV</div>
-						<div class="col-1 text-body-secondary">BaFin, CNMV & BCE</div>
-						<div class="col-1 text-body-secondary">FCA & EFSA</div>
-						<div class="col-1 text-body-secondary">FCA, CySEC & BaFin</div>
-						<div class="col-1 text-body-secondary">FCA & CySEC</div>
-						<div class="col-1 text-body-secondary">FCA, AFM, BaFin & CNMV</div>
-						<div class="col-1 text-body-secondary">FCA, CBI</div>
-						<div class="col-1 text-body-secondary">FCA, CySEC, CNMV & KNF</div>
-						<div class="col-1 text-body-secondary">(Bank) FCA, CNMV & MiFID</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-3 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Protection Amount
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Investor protection coverage for deposits only (Not MMF) and it may vary depending on where you are opening your account." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-1 text-body-secondary">€100k</div>
-						<div class="col-1 text-body-secondary">€100k</div>
-						<div class="col-1 text-body-secondary">£85k/€20k</div>
-						<div class="col-1 text-body-secondary">£85k/€20k</div>
-						<div class="col-1 text-body-secondary">€20k</div>
-						<div class="col-1 text-body-secondary">€100k</div>
-						<div class="col-1 text-body-secondary">€100k</div>
-						<div class="col-1 text-body-secondary">£85k/€20k</div>
-						<div class="col-1 text-body-secondary">€100k</div>
-					</div>
-					<hr class="opacity-10">
-				</div>
-			</div>
+			});
+		}
+	</script>
 
 
-<!------------------------------------ Note: This marks the beginning of the old section 
 
-			
-			<div class="overflow-auto overflow-xl-hidden">
-				<div style="min-width: 1000px !important;">
-					<div class="row align-items-center py-2 fw-bolder">
-						<div class="col-6 fs-3">
-							Brokers info
-						</div>
-						<div class="col-2">
-							MyInvestor
-						</div>
-						<div class="col-2"> 
-							Trade Republic
-						</div>
-						<div class="col-2">
-							Lightyear
-						</div>
-						<div class="col-2"></div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-6 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Maintenance fees
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Keep team shipping simple and take control of your company." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-2 text-body-secondary">
-							$0
-						</div>
-						<div class="col-2 text-body-secondary">
-							$0	
-						</div>
-						<div class="col-2 text-body-secondary">
-							$0
-						</div>
-					</div>
-					<hr class="opacity-10">
-
-					
-					<div class="row py-2">
-						<div class="col-6 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Deposits/Withdraws
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Keep team shipping simple and take control of your company." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-					</div>
-					<hr class="opacity-10">
-					
-					<div class="row py-2">
-						<div class="col-6 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Stocks
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Keep team shipping simple and take control of your company." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-6 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									ETF
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Keep team shipping simple and take control of your company." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-2 text-body-secondary">
-							Up to 2	
-						</div>
-						<div class="col-2 text-body-secondary">
-							Up to 10
-						</div>
-						<div class="col-2 text-body-secondary">
-							Unlimited
-						</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-6 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Savings Plan
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Keep team shipping simple and take control of your company." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-2 text-primary">
-							
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-6 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Crypto
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Keep team shipping simple and take control of your company." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-2 text-body-secondary">
-							20
-						</div>
-						<div class="col-2 text-body-secondary">
-							50
-						</div>
-						<div class="col-2 text-body-secondary">
-							Unlimited
-						</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-6 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									FX Fees
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Keep team shipping simple and take control of your company." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-2 text-primary">
-							
-						</div>
-						<div class="col-2 text-primary">
-							
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-6 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Card
-									<span class="badge text-bg-success rounded-3 ms-2">
-										Soon
-									</span>
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Keep team shipping simple and take control of your company." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-2 text-primary">
-							
-						</div>
-						<div class="col-2 text-primary">
-
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-					</div>
-					<hr class="mb-0 opacity-10">
-				</div>
-			</div>
-
-			<div class="mt-5 overflow-auto overflow-xl-hidden">
-				<div style="min-width: 1000px !important;">
-					<div class="row align-items-center py-2 fw-bolder">
-						<div class="col-6 fs-3">
-							Other features
-						</div>
-						<div class="col-2">
-							MyInvestor
-						</div>
-						<div class="col-2">
-							Trade Republic
-						</div>
-						<div class="col-2">
-							Lightyear
-						</div>
-					</div>
-					
-					<hr class="opacity-10">
-					<div class="row py-2">
-						<div class="col-6 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Card
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Keep team shipping simple and take control of your company." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-6 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Futures
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Keep team shipping simple and take control of your company." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-2 text-primary">
-							
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-					</div>
-					<hr class="opacity-10">
-
-					<div class="row py-2">
-						<div class="col-6 fw-bold">
-							<div class="row">
-								<div class="col-8">
-									Options
-								</div>
-								<div class="col-4">
-									<a href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Keep team shipping simple and take control of your company." class="text-body-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-											<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-2 text-primary">
-							
-						</div>
-						<div class="col-2 text-primary">
-
-						</div>
-						<div class="col-2 text-primary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-							</svg>
-						</div>
-					</div>
-					<hr class="opacity-10 mb-0">
-				</div>
-			</div>
-
-			<div class="text-center py-6">
-				<button class="btn btn-primary text-white btn-lg">
-					Start free trial
-				</button>
-			</div>
-		</div> --------------------->
-	</div>        
-
-
-	<!--  -->
+	<!--  ------------------------------------------------------------------------------------------------------------------------------------>
 	<div class="py-5 overflow-hidden">
 		<div class="container py-5">
 			<div class="row g-4 justify-content-between">
