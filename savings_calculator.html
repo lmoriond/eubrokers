@@ -10,8 +10,7 @@
   <meta name="author" content="tigma template">
   <meta name="generator" content="Bootstrap">
 
-    	<!-- MICROSOFT CLARITY -->
-  <script type="text/javascript">
+    	<script type="text/javascript">
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -92,11 +91,11 @@
           <div class="card calculator-card p-4 p-md-5 h-100 bg-body-tertiary">
             <h2 class="h3 fw-bold mb-4">Inputs</h2>
             <div class="mb-4">
-              <label for="initialDeposit" class="form-label fw-semibold">Initial deposit ($)</label>
+              <label for="initialDeposit" class="form-label fw-semibold">Initial deposit (€)</label>
               <input type="number" class="form-control form-control-lg" id="initialDeposit" value="10000" min="0">
             </div>
             <div class="mb-4">
-              <label for="monthlyAdd" class="form-label fw-semibold">Monthly addition ($)</label>
+              <label for="monthlyAdd" class="form-label fw-semibold">Monthly addition (€)</label>
               <input type="number" class="form-control form-control-lg" id="monthlyAdd" value="500" min="0">
             </div>
             <div class="mb-4">
@@ -119,15 +118,15 @@
             <h2 class="h3 fw-bold mb-4">Results</h2>
             <div class="mb-3">
               <span class="text-body-secondary">Final portfolio value</span>
-              <div class="fs-3 fw-bold" id="finalValue">$0</div>
+              <div class="fs-3 fw-bold" id="finalValue">€0</div>
             </div>
             <div class="mb-3">
               <span class="text-body-secondary">Total contributions</span>
-              <div class="fs-3 fw-bold" id="totalContributions">$0</div>
+              <div class="fs-3 fw-bold" id="totalContributions">€0</div>
             </div>
             <div class="mb-3">
               <span class="text-body-secondary">Estimated growth</span>
-              <div class="fs-3 fw-bold" id="growthValue">$0</div>
+              <div class="fs-3 fw-bold" id="growthValue">€0</div>
             </div>
             <hr class="opacity-10 my-4">
             <div class="row g-3">
@@ -180,7 +179,7 @@
     let savingsChart = null; // Global variable to hold the chart instance
 
     function money(n) {
-      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
     }
 
     function pct(n) {

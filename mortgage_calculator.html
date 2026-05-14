@@ -169,28 +169,28 @@
             <h2 class="h3 fw-bold mb-4">Results</h2>
             <div class="mb-3">
               <span class="text-body-secondary">Loan amount</span>
-              <div class="fs-3 fw-bold" id="loanAmount">$0</div>
+              <div class="fs-3 fw-bold" id="loanAmount">€0</div>
             </div>
             <div class="mb-3">
               <span class="text-body-secondary">Monthly principal & interest</span>
-              <div class="fs-3 fw-bold" id="monthlyPI">$0</div>
+              <div class="fs-3 fw-bold" id="monthlyPI">€0</div>
             </div>
             <div class="mb-3">
               <span class="text-body-secondary">Estimated monthly total</span>
-              <div class="fs-3 fw-bold" id="monthlyTotal">$0</div>
+              <div class="fs-3 fw-bold" id="monthlyTotal">€0</div>
             </div>
             <hr class="opacity-10 my-4">
             <div class="row g-3">
               <div class="col-6">
                 <div class="p-3 rounded-4 bg-body">
                   <div class="text-body-secondary">Total interest</div>
-                  <div class="fw-bold" id="totalInterest">$0</div>
+                  <div class="fw-bold" id="totalInterest">€0</div>
                 </div>
               </div>
               <div class="col-6">
                 <div class="p-3 rounded-4 bg-body">
                   <div class="text-body-secondary">Total cost</div>
-                  <div class="fw-bold" id="totalCost">$0</div>
+                  <div class="fw-bold" id="totalCost">€0</div>
                 </div>
               </div>
             </div>
@@ -235,7 +235,7 @@
     let mortgageChart = null;
 
     function money(n) {
-      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
     }
 
     function calculateMortgage() {
