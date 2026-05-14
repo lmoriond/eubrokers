@@ -5,6 +5,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Interactive financial hub with EU macroeconomics inputs and charts">
+
+  	<!-- MICROSOFT CLARITY -->
+	<script type="text/javascript">
+		(function(c,l,a,r,i,t,y){
+			c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+			t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+			y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+		})(window, document, "clarity", "script", "q2zkcogn3c");
+	</script>
+  
   <title>Financial Hub</title>
 
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/logo/apple-touch-icon.png">
@@ -76,7 +86,7 @@
   </header>
 
   <section class="hero-hub overflow-hidden py-9 py-xl-10 position-relative rounded-bottom-3 rounded-sm-4 rounded-xl-5 m-0 m-sm-2 m-xl-3 shadow">
-    <img src="./assets/img/bg1.jpg" class="position-absolute z-n1 top-0 h-100 w-100 object-fit-cover" alt="Macro finance">
+    <img src="./assets/img/bg/fin.jpg" class="position-absolute z-n1 top-0 h-100 w-100 object-fit-cover" alt="Macro finance">
     <div class="hero-overlay"></div>
     <div class="position-absolute z-0 top-0 h-100 w-100"></div>
     <div class="container h-100 d-flex align-items-center justify-content-center">
@@ -96,22 +106,22 @@
 
             <div class="mb-3">
               <label class="form-label fw-semibold" for="ecbRate">ECB deposit rate (%)</label>
-              <input type="number" step="0.01" class="form-control form-control-lg" id="ecbRate" value="4.00">
+              <input type="number" step="0.01" class="form-control form-control-lg" id="ecbRate" value="2.15">
             </div>
 
             <div class="mb-3">
-              <label class="form-label fw-semibold" for="inflationRate">EU inflation (%)</label>
-              <input type="number" step="0.01" class="form-control form-control-lg" id="inflationRate" value="2.50">
+              <label class="form-label fw-semibold" for="inflationRate">EU area YoY inflation (%)</label>
+              <input type="number" step="0.01" class="form-control form-control-lg" id="inflationRate" value="3.00">
             </div>
 
             <div class="mb-3">
               <label class="form-label fw-semibold" for="stocksGreed">Stocks greed index</label>
-              <input type="range" min="0" max="100" step="1" class="form-range" id="stocksGreed" value="62">
+              <input type="range" min="0" max="100" step="1" class="form-range" id="stocksGreed" value="66">
             </div>
 
             <div class="mb-3">
               <label class="form-label fw-semibold" for="cryptoGreed">Crypto greed index</label>
-              <input type="range" min="0" max="100" step="1" class="form-range" id="cryptoGreed" value="73">
+              <input type="range" min="0" max="100" step="1" class="form-range" id="cryptoGreed" value="34">
             </div>
 
             <div class="d-flex gap-2 flex-wrap mt-4">
@@ -133,25 +143,25 @@
               <div class="col-6 col-xl-3">
                 <div class="p-3 rounded-4 bg-body">
                   <div class="metric-label">ECB rate</div>
-                  <div class="metric-value mt-2" id="showEcbRate">4.00%</div>
+                  <div class="metric-value mt-2" id="showEcbRate">2.15%</div>
                 </div>
               </div>
               <div class="col-6 col-xl-3">
                 <div class="p-3 rounded-4 bg-body">
                   <div class="metric-label">Inflation</div>
-                  <div class="metric-value mt-2" id="showInflationRate">2.50%</div>
+                  <div class="metric-value mt-2" id="showInflationRate">3.00%</div>
                 </div>
               </div>
               <div class="col-6 col-xl-3">
                 <div class="p-3 rounded-4 bg-body">
                   <div class="metric-label">Stocks greed</div>
-                  <div class="metric-value mt-2" id="showStocksGreed">62</div>
+                  <div class="metric-value mt-2" id="showStocksGreed">66</div>
                 </div>
               </div>
               <div class="col-6 col-xl-3">
                 <div class="p-3 rounded-4 bg-body">
                   <div class="metric-label">Crypto greed</div>
-                  <div class="metric-value mt-2" id="showCryptoGreed">73</div>
+                  <div class="metric-value mt-2" id="showCryptoGreed">34</div>
                 </div>
               </div>
             </div>
