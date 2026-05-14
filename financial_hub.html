@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-bs-theme="auto">
+<head>
+  <script src="./assets/js/color-modes.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive financial hub with EU macroeconomics inputs and charts">
+  <title>Financial Hub</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/logo/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/logo/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/logo/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="./assets/logo/favicon.ico">
+  <link rel="manifest" href="./assets/logo/site.webmanifest">
+
+  <link rel="stylesheet" href="./assets/libraries/aos/aos.css">
+  <link rel="stylesheet" href="./assets/css/main.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <style>
+    .hero-hub { min-height: 42vh; position: relative; overflow: hidden; }
+    .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.78); mix-blend-mode: multiply; }
+    .info-card { border: 0; border-radius: 1.5rem; box-shadow: 0 1rem 3rem rgba(0,0,0,.12); }
+    .metric-value { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 800; line-height: 1.1; }
+    .metric-label { color: var(--bs-secondary-color); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; font-size: .8rem; }
+    .status-pill { border-radius: 999px; padding: .35rem .75rem; font-weight: 700; display: inline-block; }
+    .chart-box { height: 320px; }
+    .small-note { font-size: .9rem; }
+  </style>
+</head>
+
+<body>
+  <div class="loader-wrapper">
+    <div class="spinner-grow text-primary p-5" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <header class="position-absolute z-3 mt-3 w-100" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-xl" aria-label="Offcanvas navbar large">
+      <div class="container py-1">
+        <a href="./index.html" class="navbar-brand">
+          <img src="./assets/logo/logo.png" height="40" alt="logo">
+        </a>
+
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="offcanvas offcanvas-end border-0 rounded-start-0 rounded-start-sm-4" tabindex="-1" id="offcanvasNavbar2">
+          <div class="offcanvas-header" style="padding: 2rem 2rem 1.5rem 2rem;">
+            <h5 class="offcanvas-title m-0">
+              <a class="navbar-brand" href="./index.html">
+                <img src="./assets/logo/logo.png" height="32" alt="logo">
+              </a>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav align-items-xl-center flex-grow-1 column-gap-4 row-gap-4 row-gap-xl-2">
+              <li class="nav-item ms-xl-auto">
+                <a href="./index.html" class="px-3 text-white bg-primary-hover nav-link rounded-3 fw-semibold">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="./mortgage.html" class="px-3 text-white bg-primary-hover nav-link rounded-3 fw-semibold">Mortgage calculator</a>
+              </li>
+              <li class="nav-item">
+                <a href="./savings.html" class="px-3 text-white bg-primary-hover nav-link rounded-3 fw-semibold">Savings calculator</a>
+              </li>
+              <li class="nav-item">
+                <a href="./hub.html" class="px-3 text-white bg-primary-hover nav-link rounded-3 fw-semibold active">Financial hub</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero-hub overflow-hidden py-9 py-xl-10 position-relative rounded-bottom-3 rounded-sm-4 rounded-xl-5 m-0 m-sm-2 m-xl-3 shadow">
+    <img src="./assets/img/bg1.jpg" class="position-absolute z-n1 top-0 h-100 w-100 object-fit-cover" alt="Macro finance">
+    <div class="hero-overlay"></div>
+    <div class="position-absolute z-0 top-0 h-100 w-100"></div>
+    <div class="container h-100 d-flex align-items-center justify-content-center">
+      <div class="max-w-2xl mx-auto text-center">
+        <h1 class="m-0 mt-7 text-white tracking-tight text-6xl fw-bold">Financial Hub</h1>
+        <p class="m-0 mt-4 text-white text-lg leading-8">Interactive macro dashboard for investors with inputs and charts.</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="py-5">
+    <div class="container py-4">
+      <div class="row g-4 mb-4">
+        <div class="col-12 col-lg-5">
+          <div class="card info-card p-4 p-md-5 bg-body-tertiary h-100">
+            <h2 class="h3 fw-bold mb-4">Manual inputs</h2>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold" for="ecbRate">ECB deposit rate (%)</label>
+              <input type="number" step="0.01" class="form-control form-control-lg" id="ecbRate" value="4.00">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold" for="inflationRate">EU inflation (%)</label>
+              <input type="number" step="0.01" class="form-control form-control-lg" id="inflationRate" value="2.50">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold" for="stocksGreed">Stocks greed index</label>
+              <input type="range" min="0" max="100" step="1" class="form-range" id="stocksGreed" value="62">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold" for="cryptoGreed">Crypto greed index</label>
+              <input type="range" min="0" max="100" step="1" class="form-range" id="cryptoGreed" value="73">
+            </div>
+
+            <div class="d-flex gap-2 flex-wrap mt-4">
+              <button class="btn btn-primary text-white px-4 py-2" id="applyBtn">Apply</button>
+              <button class="btn btn-outline-primary px-4 py-2" id="resetBtn">Reset</button>
+            </div>
+
+            <p class="small-note text-body-secondary mt-3 mb-0">
+              Edit the numbers directly anytime. The cards and charts update instantly after you apply changes.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-7">
+          <div class="card info-card p-4 p-md-5 bg-body-tertiary h-100">
+            <h2 class="h3 fw-bold mb-4">Current snapshot</h2>
+
+            <div class="row g-3">
+              <div class="col-6 col-xl-3">
+                <div class="p-3 rounded-4 bg-body">
+                  <div class="metric-label">ECB rate</div>
+                  <div class="metric-value mt-2" id="showEcbRate">4.00%</div>
+                </div>
+              </div>
+              <div class="col-6 col-xl-3">
+                <div class="p-3 rounded-4 bg-body">
+                  <div class="metric-label">Inflation</div>
+                  <div class="metric-value mt-2" id="showInflationRate">2.50%</div>
+                </div>
+              </div>
+              <div class="col-6 col-xl-3">
+                <div class="p-3 rounded-4 bg-body">
+                  <div class="metric-label">Stocks greed</div>
+                  <div class="metric-value mt-2" id="showStocksGreed">62</div>
+                </div>
+              </div>
+              <div class="col-6 col-xl-3">
+                <div class="p-3 rounded-4 bg-body">
+                  <div class="metric-label">Crypto greed</div>
+                  <div class="metric-value mt-2" id="showCryptoGreed">73</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-3 mt-2">
+              <div class="col-12 col-md-6">
+                <span class="status-pill text-bg-primary" id="policyLabel">Tight policy</span>
+              </div>
+              <div class="col-12 col-md-6 text-md-end">
+                <span class="status-pill text-bg-success" id="sentimentLabel">Risk-on</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-12 col-xl-6">
+          <div class="card info-card p-4 p-md-5 bg-body-tertiary">
+            <h2 class="h3 fw-bold mb-4">Rate vs inflation</h2>
+            <div id="ratesChart" class="chart-box"></div>
+          </div>
+        </div>
+
+        <div class="col-12 col-xl-6">
+          <div class="card info-card p-4 p-md-5 bg-body-tertiary">
+            <h2 class="h3 fw-bold mb-4">Greed comparison</h2>
+            <div id="greedChart" class="chart-box"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 align-items-stretch">
+        <div class="col-12">
+          <div class="card info-card p-4 p-md-5 bg-body-tertiary">
+            <h2 class="h3 fw-bold mb-4">Macro notes</h2>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col">Indicator</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Rule of thumb</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ECB deposit rate</td>
+                    <td id="tableEcbRate">4.00%</td>
+                    <td>Higher rates often support cash and pressure valuation multiples.</td>
+                  </tr>
+                  <tr>
+                    <td>EU inflation</td>
+                    <td id="tableInflationRate">2.50%</td>
+                    <td>Watch whether nominal returns are beating inflation.</td>
+                  </tr>
+                  <tr>
+                    <td>Stocks greed index</td>
+                    <td id="tableStocksGreed">62 / 100</td>
+                    <td>Above 50 usually means stronger equity risk appetite.</td>
+                  </tr>
+                  <tr>
+                    <td>Crypto greed index</td>
+                    <td id="tableCryptoGreed">73 / 100</td>
+                    <td>Can move quickly and may be more volatile than stocks.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="overflow-hidden py-6 py-sm-7 py-xl-8 bg-body-tertiary rounded-top-3 rounded-sm-4 rounded-xl-5 m-0 m-sm-2 m-xl-3 shadow">
+    <div class="container">
+      <div class="row gy-5 g-sm-5">
+        <div class="col-12 col-xl-4">
+          <a href="./index.html" class="mb-3 link-body-emphasis d-flex align-items-center text-decoration-none">
+            <img src="./assets/logo/logo.png" height="24" alt="logo" loading="lazy">
+          </a>
+          <p class="mt-4 mb-4 pt-2 text-body-secondary">
+            Static market context for long-term investing decisions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="btn btn-primary btn-back-to-top rounded-circle justify-content-center align-items-center p-2 text-white">
+    ↑
+  </button>
+
+  <script src="./assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/libraries/aos/aos.js"></script>
+  <script src="./assets/js/scripts.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+
+  <script>
+    const defaults = {
+      ecbRate: 4.00,
+      inflationRate: 2.50,
+      stocksGreed: 62,
+      cryptoGreed: 73
+    };
+
+    function fmtPct(v) {
+      return `${Number(v).toFixed(2)}%`;
+    }
+
+    function policyText(ecb, inflation) {
+      if (ecb > inflation) return 'Tight policy';
+      if (ecb < inflation) return 'Loose policy';
+      return 'Neutral policy';
+    }
+
+    function sentimentText(v) {
+      if (v >= 60) return 'Risk-on';
+      if (v >= 40) return 'Mixed';
+      return 'Risk-off';
+    }
+
+    function updateChartsAndText() {
+      const ecb = parseFloat(document.getElementById('ecbRate').value) || 0;
+      const inflation = parseFloat(document.getElementById('inflationRate').value) || 0;
+      const stocks = parseInt(document.getElementById('stocksGreed').value, 10) || 0;
+      const crypto = parseInt(document.getElementById('cryptoGreed').value, 10) || 0;
+
+      document.getElementById('showEcbRate').textContent = fmtPct(ecb);
+      document.getElementById('showInflationRate').textContent = fmtPct(inflation);
+      document.getElementById('showStocksGreed').textContent = stocks;
+      document.getElementById('showCryptoGreed').textContent = crypto;
+
+      document.getElementById('tableEcbRate').textContent = fmtPct(ecb);
+      document.getElementById('tableInflationRate').textContent = fmtPct(inflation);
+      document.getElementById('tableStocksGreed').textContent = `${stocks} / 100`;
+      document.getElementById('tableCryptoGreed').textContent = `${crypto} / 100`;
+
+      const policyLabel = document.getElementById('policyLabel');
+      policyLabel.className = 'status-pill ' + (ecb > inflation ? 'text-bg-primary' : 'text-bg-secondary');
+      policyLabel.textContent = policyText(ecb, inflation);
+
+      const sentimentLabel = document.getElementById('sentimentLabel');
+      sentimentLabel.className = 'status-pill ' + ((stocks >= 60 && crypto >= 60) ? 'text-bg-success' : 'text-bg-warning');
+      sentimentLabel.textContent = `Stocks: ${sentimentText(stocks)} | Crypto: ${sentimentText(crypto)}`;
+
+      const rateTrace = {
+        x: ['ECB rate', 'Inflation'],
+        y: [ecb, inflation],
+        type: 'bar',
+        marker: { color: ['#0d6efd', '#ffc107'] },
+        hovertemplate: '%{x}: %{y:.2f}%<extra></extra>'
+      };
+
+      const greedTrace = {
+        x: ['Stocks', 'Crypto'],
+        y: [stocks, crypto],
+        type: 'bar',
+        marker: { color: ['#198754', '#0dcaf0'] },
+        hovertemplate: '%{x}: %{y}/100<extra></extra>'
+      };
+
+      const layoutBase = {
+        margin: { t: 10, l: 45, r: 20, b: 45 },
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: { family: 'inherit' }
+      };
+
+      Plotly.newPlot(
+        'ratesChart',
+        [rateTrace],
+        {
+          ...layoutBase,
+          xaxis: { title: 'Macro' },
+          yaxis: { title: '%', range: [0, Math.max(6, Math.ceil(Math.max(ecb, inflation) + 1))] }
+        },
+        { displayModeBar: false, responsive: true }
+      );
+
+      Plotly.newPlot(
+        'greedChart',
+        [greedTrace],
+        {
+          ...layoutBase,
+          xaxis: { title: 'Sentiment' },
+          yaxis: { title: 'Score', range: [0, 100] }
+        },
+        { displayModeBar: false, responsive: true }
+      );
+    }
+
+    document.getElementById('applyBtn').addEventListener('click', updateChartsAndText);
+    document.getElementById('resetBtn').addEventListener('click', function () {
+      Object.entries(defaults).forEach(([k, v]) => document.getElementById(k).value = v);
+      updateChartsAndText();
+    });
+
+    ['ecbRate', 'inflationRate', 'stocksGreed', 'cryptoGreed'].forEach(id => {
+      document.getElementById(id).addEventListener('input', updateChartsAndText);
+    });
+
+    updateChartsAndText();
+  </script>
+</body>
+</html>
