@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en" dir="ltr" data-bs-theme="auto">
 <head>
-  <!-- Include JavaScript for color modes -->
   <script src="./assets/js/color-modes.js"></script>
 
   <meta charset="utf-8">
@@ -11,7 +10,8 @@
   <meta name="author" content="tigma template">
   <meta name="generator" content="Bootstrap">
 
-	<!-- MICROSOFT CLARITY -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 	<script type="text/javascript">
 		(function(c,l,a,r,i,t,y){
 			c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -41,13 +41,13 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,.75);
+      background: rgba(172, 172, 172, 0.75);
       mix-blend-mode: multiply;
     }
     .calculator-card {
       border: 0;
       border-radius: 1.5rem;
-      box-shadow: 0 1rem 3rem rgba(0,0,0,.12);
+      box-shadow: 0 1rem 3rem rgba(207, 104, 7, 0.12);
     }
     .result-pill {
       background: var(--bs-primary-bg-subtle);
@@ -57,11 +57,10 @@
       display: inline-block;
       font-weight: 600;
     }
-    .form-range::-webkit-slider-thumb {
-      background: var(--bs-primary);
-    }
-    .form-range::-moz-range-thumb {
-      background: var(--bs-primary);
+    .chart-container {
+      position: relative;
+      height: 400px;
+      width: 100%;
     }
   </style>
 </head>
@@ -79,7 +78,6 @@
         <a href="./index.html" class="navbar-brand">
           <img src="./assets/logo/logo.png" height="40" alt="logo">
         </a>
-
         <div class="dropdown ms-3 order-last">
           <button class="btn btn-primary text-white btn-sm rounded dropdown-toggle d-flex align-items-center"
                   id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown">
@@ -87,12 +85,10 @@
             <span class="theme-icon-active">◐</span>
           </button>
         </div>
-
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="offcanvas offcanvas-end border-0 rounded-start-0 rounded-start-sm-4" tabindex="-1" id="offcanvasNavbar2">
           <div class="offcanvas-header" style="padding: 2rem 2rem 1.5rem 2rem;">
             <h5 class="offcanvas-title m-0" id="offcanvasNavbar2Label">
@@ -110,7 +106,7 @@
               <li class="nav-item">
                 <a href="./financial_hub.html" class="px-3 text-white bg-primary-hover nav-link rounded-3 fw-semibold active">Financial hub</a>
               </li>
-                            <li class="nav-item">
+              <li class="nav-item">
                 <a href="./savings_calculator.html" class="px-3 text-white bg-primary-hover nav-link rounded-3 fw-semibold active">Savings calculator</a>
               </li>
             </ul>
@@ -123,7 +119,6 @@
   <section class="hero-mortgage overflow-hidden py-9 py-xl-10 position-relative rounded-bottom-3 rounded-sm-4 rounded-xl-5 m-0 m-sm-2 m-xl-3 shadow">
     <img src="./assets/img/bg/mor.jpg" class="position-absolute z-n1 top-0 h-100 w-100 object-fit-cover" alt="House">
     <div class="hero-overlay"></div>
-    <div class="position-absolute z-0 top-0 h-100 w-100"></div>
     <div class="container h-100 d-flex align-items-center justify-content-center">
       <div class="max-w-2xl mx-auto text-center">
         <h1 class="m-0 mt-7 text-white tracking-tight text-6xl fw-bold">Mortgage Calculator</h1>
@@ -138,37 +133,30 @@
         <div class="col-12 col-lg-7">
           <div class="card calculator-card p-4 p-md-5 h-100 bg-body-tertiary">
             <h2 class="h3 fw-bold mb-4">Loan details</h2>
-
             <div class="mb-4">
               <label for="homePrice" class="form-label fw-semibold">Home price</label>
               <input type="number" class="form-control form-control-lg" id="homePrice" value="350000" min="0">
             </div>
-
             <div class="mb-4">
               <label for="downPayment" class="form-label fw-semibold">Down payment</label>
               <input type="number" class="form-control form-control-lg" id="downPayment" value="70000" min="0">
             </div>
-
             <div class="mb-4">
               <label for="interestRate" class="form-label fw-semibold">Interest rate (%)</label>
-              <input type="number" class="form-control form-control-lg" id="interestRate" value="2.5" min="0" step="0.01">
+              <input type="number" class="form-control form-control-lg" id="interestRate" value="4.5" min="0" step="0.01">
             </div>
-
             <div class="mb-4">
               <label for="loanTerm" class="form-label fw-semibold">Loan term (years)</label>
               <input type="number" class="form-control form-control-lg" id="loanTerm" value="30" min="1" step="1">
             </div>
-
             <div class="mb-4">
               <label for="propertyTax" class="form-label fw-semibold">Property tax / year</label>
               <input type="number" class="form-control form-control-lg" id="propertyTax" value="2400" min="0">
             </div>
-
             <div class="mb-4">
               <label for="insurance" class="form-label fw-semibold">Home insurance / year</label>
               <input type="number" class="form-control form-control-lg" id="insurance" value="1200" min="0">
             </div>
-
             <div class="d-flex gap-3 flex-wrap mt-4">
               <button class="btn btn-primary text-white px-4 py-2" id="calculateBtn">Calculate</button>
               <button class="btn btn-outline-primary px-4 py-2" id="resetBtn">Reset</button>
@@ -179,24 +167,19 @@
         <div class="col-12 col-lg-5">
           <div class="card calculator-card p-4 p-md-5 h-100 bg-body-tertiary">
             <h2 class="h3 fw-bold mb-4">Results</h2>
-
             <div class="mb-3">
               <span class="text-body-secondary">Loan amount</span>
               <div class="fs-3 fw-bold" id="loanAmount">$0</div>
             </div>
-
             <div class="mb-3">
               <span class="text-body-secondary">Monthly principal & interest</span>
               <div class="fs-3 fw-bold" id="monthlyPI">$0</div>
             </div>
-
             <div class="mb-3">
               <span class="text-body-secondary">Estimated monthly total</span>
               <div class="fs-3 fw-bold" id="monthlyTotal">$0</div>
             </div>
-
             <hr class="opacity-10 my-4">
-
             <div class="row g-3">
               <div class="col-6">
                 <div class="p-3 rounded-4 bg-body">
@@ -211,9 +194,19 @@
                 </div>
               </div>
             </div>
-
             <div class="mt-4">
               <span class="result-pill" id="paymentLabel">Monthly payment estimate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="card calculator-card p-4 p-md-5 bg-body-tertiary">
+            <h2 class="h3 fw-bold mb-4">Investment & Cost Growth</h2>
+            <div class="chart-container">
+              <canvas id="mortgageChart"></canvas>
             </div>
           </div>
         </div>
@@ -228,23 +221,19 @@
           <a href="./index.html" class="mb-3 link-body-emphasis d-flex align-items-center text-decoration-none">
             <img src="./assets/logo/logo.png" height="24" alt="logo" loading="lazy">
           </a>
-          <p class="mt-4 mb-4 pt-2 text-body-secondary">
-            Mortgage planning & calculator.
-          </p>
+          <p class="mt-4 mb-4 pt-2 text-body-secondary">Mortgage planning & calculator.</p>
         </div>
       </div>
     </div>
   </footer>
-
-  <button type="button" class="btn btn-primary btn-back-to-top rounded-circle justify-content-center align-items-center p-2 text-white">
-    ↑
-  </button>
 
   <script src="./assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/libraries/aos/aos.js"></script>
   <script src="./assets/js/scripts.js"></script>
 
   <script>
+    let mortgageChart = null;
+
     function money(n) {
       return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
     }
@@ -273,9 +262,11 @@
       const monthlyTaxes = taxYear / 12;
       const monthlyInsurance = insYear / 12;
       const monthlyTotal = monthlyPI + monthlyTaxes + monthlyInsurance;
-      const totalPaid = monthlyPI * months;
-      const totalInterest = totalPaid - loan;
-      const totalCost = totalPaid + taxYear + insYear + down;
+      
+      const totalPaidPI = monthlyPI * months;
+      const totalInterest = totalPaidPI - loan;
+      // Fixed: Total cost accounts for taxes/insurance over the full loan term
+      const totalCost = totalPaidPI + ((taxYear + insYear) * years) + down;
 
       document.getElementById('loanAmount').textContent = money(loan);
       document.getElementById('monthlyPI').textContent = money(monthlyPI);
@@ -283,6 +274,88 @@
       document.getElementById('totalInterest').textContent = money(totalInterest);
       document.getElementById('totalCost').textContent = money(totalCost);
       document.getElementById('paymentLabel').textContent = `Approx. ${money(monthlyTotal)} per month`;
+
+      updateChart(years, down, loan, monthlyRate, monthlyPI, monthlyTotal);
+    }
+
+    function updateChart(years, down, loan, monthlyRate, monthlyPI, monthlyTotal) {
+      const labels = [];
+      const equityData = [];
+      const outOfPocketData = [];
+
+      let currentBalance = loan;
+      
+      // Start at Year 0
+      labels.push("Year 0");
+      equityData.push(down);
+      outOfPocketData.push(down);
+
+      for (let y = 1; y <= years; y++) {
+        // Calculate remaining balance after 12 months of this year
+        for (let m = 1; m <= 12; m++) {
+          const interest = currentBalance * monthlyRate;
+          const principal = monthlyPI - interest;
+          currentBalance = Math.max(currentBalance - principal, 0);
+        }
+
+        const cumulativePrincipalPaid = loan - currentBalance;
+        const totalPaymentsToDate = (y * 12) * monthlyTotal;
+
+        labels.push("Year " + y);
+        equityData.push(down + cumulativePrincipalPaid);
+        outOfPocketData.push(down + totalPaymentsToDate);
+      }
+
+      if (mortgageChart) {
+        mortgageChart.destroy();
+      }
+
+      const ctx = document.getElementById('mortgageChart').getContext('2d');
+      mortgageChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Home Equity (Invested Amount)',
+              data: equityData,
+              borderColor: '#fd910d',
+              backgroundColor: 'rgba(13, 110, 253, 0.1)',
+              fill: true,
+              tension: 0.3
+            },
+            {
+              label: 'Total Out-of-Pocket (Total Cost)',
+              data: outOfPocketData,
+              borderColor: '#874f0b',
+              backgroundColor: 'rgba(211, 175, 0, 0.1)',
+              fill: true,
+              tension: 0.3
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.dataset.label + ': ' + money(context.parsed.y);
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) { return money(value); }
+              }
+            }
+          }
+        }
+      });
     }
 
     document.getElementById('calculateBtn').addEventListener('click', calculateMortgage);
