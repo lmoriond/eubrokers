@@ -10,8 +10,7 @@
   <meta name="author" content="tigma template">
   <meta name="generator" content="Bootstrap">
 
-	<!-- MICROSOFT CLARITY -->
-  <script type="text/javascript">
+	<script type="text/javascript">
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -121,8 +120,16 @@
               <input type="number" class="form-control form-control-lg" id="years" value="20" min="1" step="1">
             </div>
             <div class="mb-4">
-              <label for="annualReturn" class="form-label fw-semibold">Annual performance (%)</label>
+              <label for="annualReturn" class="form-label fw-semibold">Annual performance (% after inflation)</label>
               <input type="number" class="form-control form-control-lg" id="annualReturn" value="8" min="0" step="0.01">
+            </div>
+            <div class="mb-4">
+              <label for="annualCommission" class="form-label fw-semibold">Annual commission (%)</label>
+              <input type="number" class="form-control form-control-lg" id="annualCommission" value="0.50" min="0" step="0.01">
+            </div>
+            <div class="mb-4">
+              <label for="fixedAnnualFee" class="form-label fw-semibold">Fixed annual fee (€)</label>
+              <input type="number" class="form-control form-control-lg" id="fixedAnnualFee" value="10" min="0" step="1">
             </div>
             <div class="d-flex gap-3 flex-wrap mt-4">
               <button class="btn btn-primary text-white px-4 py-2" id="calculateBtn">Calculate</button>
@@ -135,7 +142,7 @@
           <div class="card calculator-card p-4 p-md-5 h-100 bg-body-tertiary">
             <h2 class="h3 fw-bold mb-4">Results</h2>
             <div class="mb-3">
-              <span class="text-body-secondary">Final portfolio value</span>
+              <span class="text-body-secondary">Final portfolio value (Net)</span>
               <div class="fs-3 fw-bold" id="finalValue">€0</div>
             </div>
             <div class="mb-3">
@@ -143,8 +150,16 @@
               <div class="fs-3 fw-bold" id="totalContributions">€0</div>
             </div>
             <div class="mb-3">
-              <span class="text-body-secondary">Estimated growth</span>
+              <span class="text-body-secondary">Estimated growth (Net)</span>
               <div class="fs-3 fw-bold" id="growthValue">€0</div>
+            </div>
+            <div class="mb-3">
+              <span class="text-body-secondary">Lost to commissions (Nominal)</span>
+              <div class="fs-3 fw-bold text-danger" id="lostToCommissions">€0</div>
+            </div>
+            <div class="mb-3">
+              <span class="text-body-secondary">Lost to commissions (%)</span>
+              <div class="fs-3 fw-bold text-danger" id="pctLostToCommissions">0%</div>
             </div>
             <hr class="opacity-10 my-4">
             <div class="row g-3">
@@ -209,39 +224,57 @@
       const monthly = parseFloat(document.getElementById('monthlyAdd').value) || 0;
       const years = parseFloat(document.getElementById('years').value) || 0;
       const annualReturn = parseFloat(document.getElementById('annualReturn').value) || 0;
+      const annualCommission = parseFloat(document.getElementById('annualCommission').value) || 0;
+      const fixedAnnualFee = parseFloat(document.getElementById('fixedAnnualFee').value) || 0;
 
       const months = Math.max(Math.round(years * 12), 0);
       const monthlyRate = annualReturn / 100 / 12;
 
-      let futureValue = initial;
+      let futureValueGross = initial;
+      let futureValueNet = initial;
       let totalInvested = initial;
       
       const labels = ['Year 0'];
       const totalValueData = [initial];
+      const totalValueGrossData = [initial];
       const investedData = [initial];
 
       for (let i = 1; i <= months; i++) {
-        futureValue = futureValue * (1 + monthlyRate) + monthly;
+        futureValueGross = futureValueGross * (1 + monthlyRate) + monthly;
+        
+        const grossInterest = futureValueNet * monthlyRate;
+        const pctFee = futureValueNet * (annualCommission / 100 / 12);
+        const fixedFee = fixedAnnualFee / 12;
+        
+        futureValueNet = futureValueNet + grossInterest + monthly - pctFee - fixedFee;
+        if (futureValueNet < 0) futureValueNet = 0;
+
         totalInvested += monthly;
 
         if (i % 12 === 0) {
           labels.push('Year ' + (i / 12));
-          totalValueData.push(Math.round(futureValue));
+          totalValueData.push(Math.round(futureValueNet));
+          totalValueGrossData.push(Math.round(futureValueGross));
           investedData.push(Math.round(totalInvested));
         }
       }
 
-      document.getElementById('finalValue').textContent = money(futureValue);
+      const totalLost = futureValueGross - futureValueNet;
+      const pctLost = futureValueGross > 0 ? (totalLost / futureValueGross) : 0;
+
+      document.getElementById('finalValue').textContent = money(futureValueNet);
       document.getElementById('totalContributions').textContent = money(totalInvested);
-      document.getElementById('growthValue').textContent = money(futureValue - totalInvested);
+      document.getElementById('growthValue').textContent = money(futureValueNet - totalInvested);
+      document.getElementById('lostToCommissions').textContent = money(totalLost);
+      document.getElementById('pctLostToCommissions').textContent = pct(pctLost);
       document.getElementById('monthlyRate').textContent = pct(monthlyRate);
       document.getElementById('displayYears').textContent = years;
       document.getElementById('summaryLabel').textContent = `Estimated at ${annualReturn}% annual return`;
 
-      updateChart(labels, investedData, totalValueData);
+      updateChart(labels, investedData, totalValueData, totalValueGrossData);
     }
 
-    function updateChart(labels, investedData, totalValueData) {
+    function updateChart(labels, investedData, totalValueData, totalValueGrossData) {
       const ctx = document.getElementById('savingsChart').getContext('2d');
       if (savingsChart) {
         savingsChart.destroy();
@@ -253,12 +286,21 @@
           labels: labels,
           datasets: [
             {
-              label: 'Total Portfolio Value',
+              label: 'Total Portfolio Value (Net)',
               data: totalValueData,
               borderColor: '#fd910d',
-              backgroundColor: 'rgba(211, 175, 0, 0.1)',
+              backgroundColor: 'rgba(253, 145, 13, 0.1)',
               fill: true,
               tension: 0.3
+            },
+            {
+              label: 'Gross Portfolio Value (Before Fees)',
+              data: totalValueGrossData,
+              borderColor: '#20c997',
+              backgroundColor: 'transparent',
+              fill: false,
+              tension: 0.3,
+              borderDash: [3, 3]
             },
             {
               label: 'Total Invested',
@@ -301,10 +343,12 @@
       document.getElementById('monthlyAdd').value = 500;
       document.getElementById('years').value = 20;
       document.getElementById('annualReturn').value = 8;
+      document.getElementById('annualCommission').value = 0.10;
+      document.getElementById('fixedAnnualFee').value = 10;
       calculateSavings();
     });
 
-    document.querySelectorAll('#initialDeposit, #monthlyAdd, #years, #annualReturn')
+    document.querySelectorAll('#initialDeposit, #monthlyAdd, #years, #annualReturn, #annualCommission, #fixedAnnualFee')
       .forEach(el => el.addEventListener('input', calculateSavings));
 
     calculateSavings();
