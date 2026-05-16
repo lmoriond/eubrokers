@@ -138,7 +138,7 @@
               <input type="number" class="form-control form-control-lg" id="homePrice" value="350000" min="0">
             </div>
             <div class="mb-4">
-              <label for="downPayment" class="form-label fw-semibold">Down payment</label>
+              <label for="downPayment" class="form-label fw-semibold">Down payment + Costs</label>
               <input type="number" class="form-control form-control-lg" id="downPayment" value="70000" min="0">
             </div>
             <div class="mb-4">
@@ -160,6 +160,10 @@
             <div class="mb-4">
               <label for="monthlyRent" class="form-label fw-semibold">Monthly rent (Comparison)</label>
               <input type="number" class="form-control form-control-lg" id="monthlyRent" value="1500" min="0">
+            </div>
+            <div class="mb-4">
+              <label for="extraPrincipal" class="form-label fw-semibold">Extra monthly principal payment</label>
+              <input type="number" class="form-control form-control-lg" id="extraPrincipal" value="0" min="0" step="10">
             </div>
             <div class="d-flex gap-3 flex-wrap mt-4">
               <button class="btn btn-primary text-white px-4 py-2" id="calculateBtn">Calculate</button>
@@ -250,6 +254,7 @@
       const taxYear = parseFloat(document.getElementById('propertyTax').value) || 0;
       const insYear = parseFloat(document.getElementById('insurance').value) || 0;
       const rent = parseFloat(document.getElementById('monthlyRent').value) || 0;
+      const extraPrincipal = parseFloat(document.getElementById('extraPrincipal').value) || 0;
 
       const loan = Math.max(price - down, 0);
       const months = years * 12;
@@ -268,27 +273,53 @@
       const monthlyInsurance = insYear / 12;
       const monthlyTotal = monthlyPI + monthlyTaxes + monthlyInsurance;
       
-      const totalPaidPI = monthlyPI * months;
-      const totalInterest = totalPaidPI - loan;
-      const totalCost = totalPaidPI + ((taxYear + insYear) * years) + down;
+      // Amortization simulation to account for extra principal payments
+      let currentBalance = loan;
+      let totalInterest = 0;
+      let runningOutOfPocket = down;
+
+      for (let y = 1; y <= years; y++) {
+        for (let m = 1; m <= 12; m++) {
+          if (currentBalance > 0) {
+            const interest = currentBalance * monthlyRate;
+            const paymentPI = Math.min(monthlyPI, currentBalance + interest);
+            const principalFromPI = paymentPI - interest;
+            currentBalance = Math.max(currentBalance - principalFromPI, 0);
+            
+            totalInterest += interest;
+            runningOutOfPocket += paymentPI;
+            
+            if (currentBalance > 0) {
+              const extraPaid = Math.min(extraPrincipal, currentBalance);
+              currentBalance = Math.max(currentBalance - extraPaid, 0);
+              runningOutOfPocket += extraPaid;
+            }
+          }
+          runningOutOfPocket += monthlyTaxes + monthlyInsurance;
+        }
+      }
+
+      const totalCost = runningOutOfPocket;
 
       document.getElementById('loanAmount').textContent = money(loan);
       document.getElementById('monthlyPI').textContent = money(monthlyPI);
-      document.getElementById('monthlyTotal').textContent = money(monthlyTotal);
+      document.getElementById('monthlyTotal').textContent = money(monthlyTotal + extraPrincipal);
       document.getElementById('totalInterest').textContent = money(totalInterest);
       document.getElementById('totalCost').textContent = money(totalCost);
-      document.getElementById('paymentLabel').textContent = `Approx. ${money(monthlyTotal)} per month`;
+      document.getElementById('paymentLabel').textContent = `Approx. ${money(monthlyTotal + extraPrincipal)} per month`;
 
-      updateChart(years, down, loan, monthlyRate, monthlyPI, monthlyTotal, rent);
+      updateChart(years, down, loan, monthlyRate, monthlyPI, monthlyTotal, rent, extraPrincipal, monthlyTaxes, monthlyInsurance);
     }
 
-    function updateChart(years, down, loan, monthlyRate, monthlyPI, monthlyTotal, rent) {
+    function updateChart(years, down, loan, monthlyRate, monthlyPI, monthlyTotal, rent, extraPrincipal, monthlyTaxes, monthlyInsurance) {
       const labels = [];
       const equityData = [];
       const outOfPocketData = [];
       const rentData = [];
 
       let currentBalance = loan;
+      let runningOutOfPocket = down;
+      let totalRentToDate = 0;
       
       // Start at Year 0
       labels.push("Year 0");
@@ -298,18 +329,29 @@
 
       for (let y = 1; y <= years; y++) {
         for (let m = 1; m <= 12; m++) {
-          const interest = currentBalance * monthlyRate;
-          const principal = monthlyPI - interest;
-          currentBalance = Math.max(currentBalance - principal, 0);
+          if (currentBalance > 0) {
+            const interest = currentBalance * monthlyRate;
+            const paymentPI = Math.min(monthlyPI, currentBalance + interest);
+            const principalFromPI = paymentPI - interest;
+            currentBalance = Math.max(currentBalance - principalFromPI, 0);
+            
+            runningOutOfPocket += paymentPI;
+            
+            if (currentBalance > 0) {
+              const extraPaid = Math.min(extraPrincipal, currentBalance);
+              currentBalance = Math.max(currentBalance - extraPaid, 0);
+              runningOutOfPocket += extraPaid;
+            }
+          }
+          runningOutOfPocket += monthlyTaxes + monthlyInsurance;
+          totalRentToDate += rent;
         }
 
         const cumulativePrincipalPaid = loan - currentBalance;
-        const totalPaymentsToDate = (y * 12) * monthlyTotal;
-        const totalRentToDate = (y * 12) * rent;
 
         labels.push("Year " + y);
         equityData.push(down + cumulativePrincipalPaid);
-        outOfPocketData.push(down + totalPaymentsToDate);
+        outOfPocketData.push(runningOutOfPocket);
         rentData.push(totalRentToDate);
       }
 
@@ -384,10 +426,11 @@
       document.getElementById('propertyTax').value = 1450;
       document.getElementById('insurance').value = 200;
       document.getElementById('monthlyRent').value = 1200;
+      document.getElementById('extraPrincipal').value = 0;
       calculateMortgage();
     });
 
-    document.querySelectorAll('#homePrice, #downPayment, #interestRate, #loanTerm, #propertyTax, #insurance, #monthlyRent')
+    document.querySelectorAll('#homePrice, #downPayment, #interestRate, #loanTerm, #propertyTax, #insurance, #monthlyRent, #extraPrincipal')
       .forEach(el => el.addEventListener('input', calculateMortgage));
 
     calculateMortgage();
