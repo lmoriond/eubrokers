@@ -1,0 +1,45 @@
+# EU Brokers
+
+Transparent pricing for every budget.
+
+## Overview
+EU Brokers compares brokerage platforms and investing apps available in Europe, focusing on fees, deposits, withdrawals, regulation, and investor protection.
+
+## Main page
+- https://eubrokers.pages.dev/ - Homepage with the comparison table and summary statements.
+
+## What this site covers
+- Broker fee comparisons.
+- Maintenance fees.
+- Stocks fees.
+- ETF fees.
+- FX fees.
+- Minimum deposits.
+- Withdrawal fees.
+- Inactivity fees.
+- Securities transfer fees.
+- Regulation and protection levels.
+
+## Featured brokers
+- Lightyear.
+- Trading 212.
+- MyInvestor.
+- Trade Republic.
+- XTB.
+- N26.
+- eToro.
+- DeGiro.
+- Interactive Brokers.
+- Revolut.
+- Scalable Capital.
+- Freedom24.
+
+## Summary points
+- Best for starters, excellent UI and overall low commissions.
+- No commissions, social platform, and pies for automated investing.
+- Stocks, ETF, bonds, and crypto.
+- Good UI and free saving plans.
+
+## Notes
+- This is a comparison resource, not a broker.
+- Users should verify current fees and regulatory coverage with each provider before investing.

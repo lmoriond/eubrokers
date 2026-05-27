@@ -1,0 +1,31 @@
+# EU Brokers
+
+Transparent pricing for every budget.
+
+Best for starters, excellent UI and overall low commissions.
+
+No commissions, social platform, and pies for automated investing.
+
+Stocks, ETF, bonds and crypto. Good UI and free saving plans.
+
+## Homepage
+- https://eubrokers.pages.dev/ - Main comparison page.
+
+## Broker comparison
+- Lightyear — €0 info, 0.1% maintenance, €0 stocks fees, 0.35% ETF fees, €0 FX fee, €0 min deposit, €0 withdrawal, with fee inactivity, FCA/EFSA regulation, £85k/€20k protection.
+- Trading 212 — €0 info, €0 maintenance, €0 stocks fees, 0.5% ETF fees, €1 FX fee, €0 min deposit, €0 withdrawal, no inactivity fee, FCA/CySEC/BaFin regulation, £85k/€20k protection.
+- MyInvestor — €0 info, 0.12% maintenance, 0.12% stocks fees, 0.5% ETF fees, €0 FX fee, €0 min deposit, €0 withdrawal, yes inactivity fee, CNMV regulation, €100k protection.
+- Trade Republic — €0 info, €1 maintenance, €1 stocks fees, 0.5% ETF fees, €1 FX fee, €0 min deposit, €0 withdrawal, with fee inactivity, BaFin/CNMV/BCE regulation, €100k protection.
+- XTB — €0 info, €0 maintenance, €0 stocks fees, 0.5% ETF fees, €0 FX fee, €0 min deposit, €10/mo withdrawal, no inactivity fee, FCA/CySEC/CNMV/KNF regulation, £85k/€20k protection.
+- N26 — €0 info, €0 maintenance, €0 stocks fees, 0% ETF fees, €0 FX fee, €0 min deposit, €0 withdrawal, yes inactivity fee, BaFin/CySEC/MiFID II/FMA regulation, €20k protection.
+- eToro — €0 info, €0 maintenance, €0 stocks fees, 0.5% ETF fees, €50 FX fee, €0 to €5 min deposit, €10/mo withdrawal, yes inactivity fee, $75 fee (ACATS) securities transfer, FCA/CySEC/CNMV regulation, €20k protection.
+- DeGiro — €0 info, €1 maintenance, €1-3 stocks fees, 0.25% ETF fees, €0 FX fee, €0 min deposit, €0 withdrawal, with fee inactivity, FCA/AFM/BaFin/CNMV regulation, €100k protection.
+- Interactive Brokers — €0 info, €1 maintenance, €1 stocks fees, 0.002% ETF fees, €0 FX fee, €0 min deposit, €0 withdrawal, with fee inactivity, FCA/CBI regulation, €100k protection.
+- Revolut — €0 info, 0.25% maintenance, 0.25% stocks fees, 0.5% to 1% ETF fees, 0.5% to 1% FX fee, €0 min deposit, €0 withdrawal, with fee inactivity, FCA/CNMV/MiFID regulation, €100k protection.
+- Scalable Capital — €0 info, €0.99 maintenance, €0.99 stocks fees, 0.99% ETF fees, €0 FX fee, €0 min deposit, €0 withdrawal, yes inactivity fee, FCA/BaFin/AMF/CONSOB/CNMV/FMA regulation, €100k protection.
+- Freedom24 — €0 info, 0.5% + €0.012 maintenance, 0.5% + €0.012 stocks fees, 0.01% ETF fees, €0 FX fee, €7 withdrawal, €0 inactivity, €100 per ISIN securities transfer, CySEC/MiFID/SEC/BaFin regulation, €20k protection.
+
+## Notes
+- This site is a comparison resource, not a broker.
+- Fees and protections may change over time.
+- Users should confirm details directly with each provider.
