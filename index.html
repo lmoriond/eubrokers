@@ -52,6 +52,7 @@
     <link rel="stylesheet" href="./assets/libraries/aos/aos.css">
     <link rel="stylesheet" href="./assets/css/main.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/broker-compare.css">
 
     <!-- Open Graph Meta Tags for Social Sharing -->
     <!-- Update the 'title' and 'description' content below to enhance social sharing -->
@@ -605,7 +606,7 @@
 	
 
 
-	<div class="container my-5">
+	<div class="container my-5" id="brokerCompare">
 		<div class="max-w-2xl pt-7 pb-4">
 			<h2 class="m-0 text-primary-emphasis text-base leading-7 fw-semibold">
 				These are the most popular brokers used by the community.
@@ -613,301 +614,87 @@
 			<div class="m-0 mt-2 text-body-emphasis text-4xl leading-snug tracking-tight fw-bold">
 				Compare Brokers in depth.
 			</div>
+			<p class="m-0 mt-3 text-body-secondary leading-6">
+				Search, filter, and compare up to three brokers side by side. Click a broker name for full details.
+			</p>
 		</div>
+
+		<div class="d-flex flex-wrap gap-2 mb-4" role="group" aria-label="Quick highlights">
+			<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="cheapest-trading">Lowest trading fees</button>
+			<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="lowest-fx">Lowest FX fees</button>
+			<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="strong-protection">Strongest protection</button>
+		</div>
+
+		<div class="broker-compare-toolbar d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center mb-3">
+			<input type="search" id="dynamicTableSearch" class="form-control flex-grow-1" placeholder="Try filtering by name, bank, protection..." autocomplete="off">
+			<div class="d-flex flex-wrap gap-2">
+				<div class="dropdown">
+					<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Columns</button>
+					<ul class="dropdown-menu dropdown-menu-end shadow p-2" id="columnToggleMenu" style="--bs-dropdown-min-width: 14rem;"></ul>
+				</div>
+				<button type="button" class="btn btn-outline-secondary broker-compare-chip" id="toggleFeeChart">FX fee chart</button>
+			</div>
+		</div>
+
+		<div class="d-flex flex-wrap broker-compare-chips mb-4" role="group" aria-label="Filters">
+			<button type="button" class="broker-compare-chip" data-filter="zero-stocks">Zero stock fees</button>
+			<button type="button" class="broker-compare-chip" data-filter="zero-etf">Zero ETF fees</button>
+			<button type="button" class="broker-compare-chip" data-filter="bank">Bank regulated</button>
+			<button type="button" class="broker-compare-chip" data-filter="protection-100k">€100k protection</button>
+			<button type="button" class="broker-compare-chip" data-filter="free-withdrawal">Free withdrawal</button>
+			<button type="button" class="broker-compare-chip" data-filter="no-inactivity">No inactivity fee</button>
+			<button type="button" class="broker-compare-chip" data-filter="free-transfer">Free securities transfer</button>
+		</div>
+
+		<div id="feeChartPanel" class="d-none p-4 mb-4 bg-body-tertiary shadow rounded-4">
+			<h3 class="h6 text-body-emphasis fw-semibold mb-3">FX fees (filtered brokers)</h3>
+			<div id="feeChartBars"></div>
+		</div>
+
+		<p class="small text-body-secondary mb-2" id="brokerCompareCount" aria-live="polite"></p>
+
 		<div class="table-container">
-			<div class="table-content">
-				<input type="text" id="dynamicTableSearch" class="form-control mb-3" placeholder="Try filtering by name, bank, protection...">
-				<table class="table table-hover align-middle" id="dynamicTable">
-					<thead>
-						<tr>
-							<th scope="col" data-col="0" class="sortable fw-bold">Broker <span class="sort-indicator"></span></th>
-							<th scope="col" class="fw-bold">Info/Referral</th>
-							<th scope="col" data-col="1" class="sortable fw-bold">Annual Maintenance <span class="sort-indicator"></span></th>
-							<th scope="col" data-col="2" class="sortable fw-bold">Stocks Fees<span class="sort-indicator"></span></th>
-							<th scope="col" data-col="3" class="sortable fw-bold">ETF Fees<span class="sort-indicator"></span></th>
-							<th scope="col" data-col="4" class="sortable fw-bold">FX Fee<span class="sort-indicator"></span></th>
-							<th scope="col" data-col="5" class="sortable fw-bold">Min Deposit<span class="sort-indicator"></span></th>
-							<th scope="col" data-col="6" class="sortable fw-bold">Withdrawal<span class="sort-indicator"></span></th>
-							<th scope="col" data-col="7" class="sortable fw-bold">Inactivity<span class="sort-indicator"></span></th>
-							<th scope="col" data-col="8" class="sortable fw-bold">Securities Transfer<span class="sort-indicator"></span></th>
-							<th scope="col" data-col="9" class="sortable fw-bold">Regulator-Structure<span class="sort-indicator"></span></th>
-							<th scope="col" data-col="10" class="sortable fw-bold">Protection<span class="sort-indicator"></span></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Lightyear</td>
-							<td>
-								<a href="https://lightyear.com/en-es/profile/lucas496" data-bs-toggle="tooltip" data-bs-title="UK/EU broker, 0.1% fee for stocks, no ETF fees, low FX, FCA & EFSA regulated.">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0</td><td>€1/0.1%</td><td>€0</td><td>0.35%</td><td>€0</td><td>€0</td><td>€0</td><td>With fee</td><td>FCA/EFSA</td><td>£85k/€20k</td>
-						</tr>
-						<tr>
-							<td>Trading 212</td>
-							<td>
-								<a href="https://www.trading212.com/invite/16biYR3VBq" data-bs-toggle="tooltip" data-bs-title="Commission-free stocks/ETFs, pies for auto-invest, low FX, FCA/CySEC regulated.">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0</td><td>€0</td><td>€0</td><td>0.15%-0.5%</td><td>€1</td><td>€0</td><td>€0</td><td>Free</td><td>FCA/CySEC/BaFin</td><td>£85k/€20k</td>
-						</tr>						
-						<tr>
-							<td>MyInvestor</td>
-							<td>
-								<a href="https://newapp.myinvestor.es/do/signup?promotionalCode=G9GLY" data-bs-toggle="tooltip" data-bs-title="Spanish neobank, large variaty and no fee on funds, not good for trading (the app is not great yet). No custody or inactivity fees.">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0-€95.88</td><td>1€/0.12%</td><td>1€/0.12%</td><td>0.5%</td><td>€0</td><td>€0</td><td>€0</td><td>Yes</td><td>CNMV (Bank)</td><td>€100k</td>
-						</tr>
-						<tr>
-							<td>Trade Republic</td>
-							<td>
-								<a href="https://traderepublic.com/en-es/nocodereferral?code=l7rwnx7c" data-bs-toggle="tooltip" data-bs-title="German broker,low transparency in spreads fees, free savings plans, €1 per trade, wide asset selection, BaFin regulated.">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0</td><td>€1</td><td>€1</td><td>0.5%</td><td>€1</td><td>€0</td><td>€0</td><td>With fee</td><td>BaFin/CNMV/BCE (Bank)</td><td>€100k</td>
-						</tr>
-						<tr>
-							<td>XTB</td>
-							<td>
-								<a href="https://www.xtb.com" data-bs-toggle="tooltip" data-bs-title="Polish broker, commission-free stocks/ETFs, inactivity fee after 12 months above 100K in assets. Holding physical assets like even one stock or ETF share waives the fee entirely.">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0</td><td>€0*</td><td>€0*</td><td>0.5%</td><td>€0</td><td>€0</td><td>€0-€10/mo</td><td>No</td><td>FCA/CySEC/CNMV/KNF (Listed Company "XTB")</td><td>£85k/€20k</td>
-						</tr>	
-						<tr>
-							<td>N26</td>
-							<td>
-								<a href="https://n26.com/r/lucasnim1655" data-bs-toggle="tooltip" data-bs-title="German fintech and mobile bank based in Berlin, Mastercard debit cards, instant money transfers, savings, and free investment options, operating mainly in European countries without physical branches">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0</td><td>€0</td><td>€0</td><td>0%</td><td>€0</td><td>€0</td><td>€0</td><td>Yes</td><td>BaFin/CySEC/MiFID II/FMA/ (Bank)</td><td>€20k</td>
-						</tr>											
-						<tr>
-							<td>eToro</td>
-							<td>
-								<a href="https://www.etoro.com/" data-bs-toggle="tooltip" data-bs-title="Club membership with benefits, copy trading, zero commission, $5 withdrawal ($0 with some membership), inactivity fee after 12 months.">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0</td><td>€0</td><td>€0</td><td>0.5%</td><td>€50</td><td>€0 to €5</td><td>€10/mo</td><td>Yes $75 Fee (ACATS)</td><td>FCA/CySEC/CNMV (Listed Company "ETOR")</td><td>€20k</td>
-						</tr>
-						<tr>
-							<td>DeGiro</td>
-							<td>
-								<a href="https://www.degiro.es/" data-bs-toggle="tooltip" data-bs-title="Dutch broker, low fees, wide market access, no inactivity fee, AFM regulated.">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0</td><td>€1-3</td><td>€1</td><td>0.25%</td><td>€0</td><td>€0</td><td>€0</td><td>With fee</td><td>FCA/AFM/BaFin/CNMV (Listed Company "FTK")</td><td>€100k</td>
-						</tr>
-						<tr>
-							<td>Interactive Brokers</td>
-							<td>
-								<a href="https://www.interactivebrokers.com/es/home.php" data-bs-toggle="tooltip" data-bs-title="Global access, respected and listed company, advanced platform, very low FX fee, wide asset range, FCA/CBI regulated.">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0</td><td>€1</td><td>€1</td><td>0.002%</td><td>€0</td><td>€0</td><td>€0</td><td>With fee</td><td>FCA/CBI (Listed Company "IBKR")</td><td>€20k + insurance</td>
-						</tr>
-						<tr>
-							<td>Revolut</td>
-							<td>
-								<a href="https://revolut.com/referral/?referral-code=lucasv5js!MAY2-26-AR-H1&geo-redirect" data-bs-toggle="tooltip" data-bs-title="App-based, free plan has limits, paid plans offer more trades, FX up to 1%, FCA regulated.">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0-€450</td><td>0.25%</td><td>0.25%</td><td>0.5% to 1%</td><td>€0</td><td>€0</td><td>€0</td><td>With fee</td><td>FCA/CNMV/MiFID (Bank)</td><td>€100k</td>
-						</tr>
-						<tr>
-							<td>Scalable Capital</td>
-							<td>
-								<a href="https://es.scalable.capital/en/invitation/bfw4z8" data-bs-toggle="tooltip" data-bs-title="German broker, low-cost trading, information is from their free plan 'FREE BROKER', savings plan orders are free and some of their ETFs too.">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0-€59.88</td><td>€0.99</td><td>€0.99</td><td>0.99%</td><td>€0</td><td>€0</td><td>€0</td><td>Yes</td><td>FCA/BaFin/AMF/CONSOB/CNMV/FMA (Bank)</td><td>€100k</td>
-						</tr>
-						<tr>
-							<td>Freedom24</td>
-							<td>
-								<a href="https://lp.freedom24.com/" data-bs-toggle="tooltip" data-bs-title="Freedom Holding Corp. is a NASDAQ-listed public company, monthly fee based on filled contracts, varies with activity. Watch out for the fees!">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0</td><td>0.5% +€0.012</td><td>0.5% +€0.012</td><td>0.01%</td><td>€0</td><td>€7</td><td>€0</td><td>€100 per ISIN</td><td>CySEC/MiFID/SEC/BaFin (Listed Company "FRHC")</td><td>€20k</td>
-						</tr>
-						<tr>
-							<td>Neverless</td>
-							<td>
-								<a href="https://neverless.com/referral?code=lucson" data-bs-toggle="tooltip" data-bs-title="Neverless 1,000+ US stocks. 400+ ETFs. 0 fees. Up to 5x leverage.Deposit EUR, USD, or stablecoins. You earn dividends, and you also earn daily interest on your uninvested balance.">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16">
-										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-										<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg>
-								</a>
-							</td>
-							<td>€0</td><td>€0</td><td>€0</td><td>0.0%</td><td>€0</td><td>€0</td><td>€0</td><td>No</td><td>MICA/MiFID II</td><td>No insurance</td>
-						</tr>												
-					</tbody>
+			<div class="table-content broker-compare-table-wrap">
+				<table class="table table-hover align-middle mb-0" id="dynamicTable">
+					<thead><tr></tr></thead>
+					<tbody></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-	<script>
-	// Improved sorting logic for all columns with visual indicators
-	let sortDirection = Array(12).fill(true);
 
-	function clearSortIndicators() {
-		document.querySelectorAll('#dynamicTable thead th .sort-indicator').forEach(span => {
-			span.textContent = '';
-		});	
-	}
+	<div class="broker-compare-bar bg-body-tertiary shadow" id="brokerCompareBar">
+		<div class="container py-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
+			<span class="text-body-secondary"><strong id="compareBarCount">0</strong> selected (max 3)</span>
+			<div class="d-flex gap-2">
+				<button type="button" class="btn btn-outline-secondary btn-sm" id="clearCompare">Clear</button>
+				<button type="button" class="btn btn-primary text-white btn-sm" id="openComparePanel" disabled>Compare side by side</button>
+			</div>
+		</div>
+	</div>
 
-	function sortTable(n) {
-		const table = document.getElementById("dynamicTable");
-		const tbody = table.tBodies[0];
-		const rows = Array.from(tbody.rows);
-		const dir = sortDirection[n] ? 1 : -1;
-		sortDirection[n] = !sortDirection[n];
+	<div class="offcanvas offcanvas-end broker-detail-drawer" tabindex="-1" id="brokerDetailDrawer" aria-labelledby="brokerDetailTitle">
+		<div class="offcanvas-header">
+			<h2 class="offcanvas-title h4" id="brokerDetailTitle">Broker</h2>
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body" id="brokerDetailBody"></div>
+	</div>
 
-		// Remove all sort indicators, then set the current one
-		clearSortIndicators();
-		const th = table.querySelector(`th[data-col="${n}"] .sort-indicator`);
-		if (th) th.textContent = sortDirection[n] ? " ▲" : " ▼";
-
-		// The "Info" column is always at index 1, so for column n:
-		// If n == 0 (Broker), use cell 0
-		// If n >= 1, use cell n+1 (skip Info column)
-		rows.sort((rowA, rowB) => {
-			let x, y;
-			if (n === 0) {
-				x = rowA.cells[0].textContent.trim();
-				y = rowB.cells[0].textContent.trim();
-			} else {
-				x = rowA.cells[n + 1].textContent.trim();
-				y = rowB.cells[n + 1].textContent.trim();
-			}
-
-			// Try to parse as number (including currency/percent)
-			const xNum = parseFloat(x.replace(/[^0-9.\-]/g, ''));
-			const yNum = parseFloat(y.replace(/[^0-9.\-]/g, ''));
-			const xIsNum = !isNaN(xNum) && x.match(/[0-9]/);
-			const yIsNum = !isNaN(yNum) && y.match(/[0-9]/);
-
-			if (xIsNum && yIsNum) {
-				return dir * (xNum - yNum);
-			} else {
-				return dir * x.localeCompare(y, undefined, {numeric: true, sensitivity: 'base'});
-			}
-		});
-
-		// Re-append sorted rows
-		rows.forEach(row => tbody.appendChild(row));
-	}
-
-	// Attach sort to all headers
-	document.querySelectorAll('#dynamicTable thead th.sortable').forEach(th => {
-		th.style.cursor = "pointer";
-		th.addEventListener('click', function() {
-			sortTable(Number(this.getAttribute('data-col')));
-		});
-	});
-
-	// Filter function for table
-	document.getElementById("dynamicTableSearch").addEventListener("keyup", function () {
-		let filter = this.value.toLowerCase();
-		let table = document.getElementById("dynamicTable");
-		let trs = table.getElementsByTagName("tr");
-		for (let i = 1; i < trs.length; i++) {
-			let tds = trs[i].getElementsByTagName("td");
-			let show = false;
-			for (let j = 0; j < tds.length; j++) {
-				if (tds[j] && tds[j].textContent.toLowerCase().indexOf(filter) > -1) {
-					show = true;
-					break;
-				}
-			}
-			trs[i].style.display = show ? "" : "none";
-		}
-		reinitTooltips();
-	});
-	</script>
-	<style>
-		#dynamicTable thead th {
-			background: none !important;
-		}
-		#dynamicTable tbody tr {
-			height: 70px;
-		}
-		#dynamicTable tbody tr > td {
-			vertical-align: middle !important;
-			padding-top: 18px !important;
-			padding-bottom: 18px !important;
-		}
-	</style>
-	<script>
-		// Add Bootstrap tooltip initialization for dynamic table info icons
-		document.addEventListener('DOMContentLoaded', function () {
-			var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-			tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-				new bootstrap.Tooltip(tooltipTriggerEl);
-			});
-		});
-	</script>
-	<script>
-		// Re-initialize tooltips after sorting/filtering
-		function reinitTooltips() {
-			var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-			tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-				if (!bootstrap.Tooltip.getInstance(tooltipTriggerEl)) {
-					new bootstrap.Tooltip(tooltipTriggerEl);
-				}
-			});
-		}
-	</script>
+	<div class="offcanvas offcanvas-bottom h-auto" tabindex="-1" id="brokerCompareOffcanvas" aria-labelledby="brokerCompareOffcanvasLabel" style="--bs-offcanvas-height: auto; max-height: 85vh;">
+		<div class="offcanvas-header border-bottom">
+			<h2 class="offcanvas-title h5" id="brokerCompareOffcanvasLabel">Side-by-side comparison</h2>
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			<div class="d-flex flex-column flex-md-row gap-3 mb-4" id="compareSlots"></div>
+			<div class="table-responsive broker-compare-panel rounded-3 p-2 bg-body-tertiary">
+				<table class="table table-sm align-middle mb-0">
+					<tbody id="compareMetrics"></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -1196,6 +983,7 @@
 	<script src="./assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="./assets/libraries/aos/aos.js"></script>
 	<script src="./assets/js/scripts.js"></script>
+	<script src="./assets/js/broker-compare.js"></script>
 
 
 </body>
