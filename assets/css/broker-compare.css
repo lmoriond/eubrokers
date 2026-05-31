@@ -64,6 +64,15 @@
     padding-bottom: 18px !important;
 }
 
+#dynamicTable thead th[data-col]:not([data-col="regulator"]),
+#dynamicTable tbody td[data-field]:not([data-field="regulator"]) {
+    text-align: center;
+}
+
+#dynamicTable tbody td[data-field="broker"] .broker-name-btn {
+    display: inline-block;
+}
+
 #dynamicTable tbody tr.row-selected {
     background-color: rgba(var(--bs-primary-rgb), 0.08);
 }

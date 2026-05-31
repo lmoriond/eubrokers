@@ -32,7 +32,7 @@
         { id: 'etoro', name: 'eToro', infoUrl: 'https://www.etoro.com/', infoTooltip: 'Club membership with benefits, copy trading, zero commission, $5 withdrawal ($0 with some membership), inactivity fee after 12 months.', maintenance: '€0', stocksFees: '€0', etfFees: '€0', fxFee: '0.5%', minDeposit: '€50', withdrawal: '€0 to €5', inactivity: '€10/mo', securitiesTransfer: 'Yes $75 Fee (ACATS)', regulator: 'FCA/CySEC/CNMV (Listed Company "ETOR")', protection: '€20k' },
         { id: 'degiro', name: 'DeGiro', infoUrl: 'https://www.degiro.es/', infoTooltip: 'Dutch broker, low fees, wide market access, no inactivity fee, AFM regulated.', maintenance: '€0', stocksFees: '€1-3', etfFees: '€1', fxFee: '0.25%', minDeposit: '€0', withdrawal: '€0', inactivity: '€0', securitiesTransfer: 'With fee', regulator: 'FCA/AFM/BaFin/CNMV (Listed Company "FTK")', protection: '€100k' },
         { id: 'ibkr', name: 'Interactive Brokers', infoUrl: 'https://www.interactivebrokers.com/es/home.php', infoTooltip: 'Global access, respected and listed company, advanced platform, very low FX fee, wide asset range, FCA/CBI regulated.', maintenance: '€0', stocksFees: '€1', etfFees: '€1', fxFee: '0.002%', minDeposit: '€0', withdrawal: '€0', inactivity: '€0', securitiesTransfer: 'With fee', regulator: 'FCA/CBI (Listed Company "IBKR")', protection: '€20k + insurance' },
-        { id: 'revolut', name: 'Revolut', infoUrl: 'https://revolut.com/referral/?referral-code=lucasv5js!MAY2-26-AR-H1&geo-redirect', infoTooltip: 'App-based, free plan has limits, paid plans offer more trades, FX up to 1%, FCA regulated.', maintenance: '€0-€450', stocksFees: '0.25%', etfFees: '0.25%', fxFee: '0.5% to 1%', minDeposit: '€0', withdrawal: '€0', inactivity: '€0', securitiesTransfer: 'With fee', regulator: 'FCA/CNMV/MiFID (Bank)', protection: '€100k' },
+        { id: 'revolut', name: 'Revolut', infoUrl: 'https://revolut.com/referral/?referral-code=lucasv5js!MAY2-26-AR-H1&geo-redirect', infoTooltip: 'App-based Bank, free plan has limits, paid plans offer more trades, FX up to 1%, FCA regulated.', maintenance: '€0-€450', stocksFees: '0.25%', etfFees: '0.25%', fxFee: '0.5% to 1%', minDeposit: '€0', withdrawal: '€0', inactivity: '€0', securitiesTransfer: 'With fee', regulator: 'FCA/CNMV/MiFID (Bank)', protection: '€100k' },
         { id: 'scalable', name: 'Scalable Capital', infoUrl: 'https://es.scalable.capital/en/invitation/bfw4z8', infoTooltip: "German broker, low-cost trading, information is from their free plan 'FREE BROKER', savings plan orders are free and some of their ETFs too.", maintenance: '€0-€59.88', stocksFees: '€0.99', etfFees: '€0.99', fxFee: '0.99%', minDeposit: '€0', withdrawal: '€0', inactivity: '€0', securitiesTransfer: 'Yes', regulator: 'FCA/BaFin/AMF/CONSOB/CNMV/FMA (Bank)', protection: '€100k' },
         { id: 'freedom24', name: 'Freedom24', infoUrl: 'https://lp.freedom24.com/', infoTooltip: 'Freedom Holding Corp. is a NASDAQ-listed public company, monthly fee based on filled contracts, varies with activity. Watch out for the fees!', maintenance: '€0', stocksFees: '0.5% +€0.012', etfFees: '0.5% +€0.012', fxFee: '0.01%', minDeposit: '€0', withdrawal: '€7', inactivity: '€0', securitiesTransfer: '€100 per ISIN', regulator: 'CySEC/MiFID/SEC/BaFin (Listed Company "FRHC")', protection: '€20k' },
         { id: 'neverless', name: 'Neverless', infoUrl: 'https://neverless.com/referral?code=lucson', infoTooltip: 'Neverless 1,000+ US stocks. 400+ ETFs. 0 fees. Up to 5x leverage.Deposit EUR, USD, or stablecoins. You earn dividends, and you also earn daily interest on your uninvested balance.', maintenance: '€0', stocksFees: '€0', etfFees: '€0', fxFee: '0.0%', minDeposit: '€0', withdrawal: '€0', inactivity: '€0', securitiesTransfer: 'No', regulator: 'MICA/MiFID II', protection: 'No insurance' },
@@ -51,7 +51,7 @@
     const HIGHLIGHTS = [
         { id: 'cheapest-trading', label: 'Lowest trading fees', match: (b) => isZeroFee(b.stocksFees) && isZeroFee(b.etfFees) },
         { id: 'lowest-fx', label: 'Lowest FX fees', match: (b) => parsePercent(b.fxFee) <= 0.15 },
-        { id: 'strong-protection', label: 'Strongest protection', match: (b) => protectionScore(b.protection) >= 100000 },
+        { id: 'strong-protection', label: 'Strongest protection', match: (b) => protectionScore(b.protection) >= 100 },
     ];
 
     const state = {
@@ -108,9 +108,9 @@
     function protectionBadgeClass(value) {
         const score = protectionScore(value);
         if (/no insurance/i.test(value)) return 'text-bg-danger';
-        if (score >= 100000) return 'text-bg-success';
-        if (score >= 85000) return 'text-bg-primary';
-        if (score >= 20000) return 'text-bg-warning';
+        if (score >= 100) return 'text-bg-success';
+        if (score >= 85) return 'text-bg-primary';
+        if (score >= 20) return 'text-bg-warning';
         return 'text-bg-secondary';
     }
 
@@ -190,9 +190,9 @@
             visibleCols.forEach((col) => {
                 const hidden = state.hiddenColumns.has(col.key) ? ' col-hidden' : '';
                 if (col.key === 'broker') {
-                    row += `<td class="${hidden}"><button type="button" class="btn btn-link p-0 text-body-emphasis fw-semibold text-decoration-none broker-name-btn" data-broker-id="${b.id}">${escapeHtml(b.name)}</button></td>`;
+                    row += `<td class="${hidden}" data-field="broker"><button type="button" class="btn btn-link p-0 text-body-emphasis fw-semibold text-decoration-none broker-name-btn" data-broker-id="${b.id}">${escapeHtml(b.name)}</button></td>`;
                 } else if (col.key === 'info') {
-                    row += `<td class="${hidden}"><a href="${escapeHtml(b.infoUrl)}" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-title="${escapeHtml(b.infoTooltip)}">${INFO_ICON}</a></td>`;
+                    row += `<td class="${hidden}" data-field="info"><a href="${escapeHtml(b.infoUrl)}" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-title="${escapeHtml(b.infoTooltip)}">${INFO_ICON}</a></td>`;
                 } else if (col.key === 'compare') {
                     const checked = selected ? ' checked' : '';
                     const disabled = !selected && state.compareIds.length >= 3 ? ' disabled' : '';
