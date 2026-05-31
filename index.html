@@ -619,20 +619,18 @@
 			</p>
 		</div>
 
-		<div class="d-flex flex-wrap gap-2 mb-4" role="group" aria-label="Quick highlights">
+		<div class="d-flex flex-wrap broker-compare-chips gap-2 mb-4" role="group" aria-label="Quick highlights">
 			<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="cheapest-trading">Lowest trading fees</button>
 			<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="lowest-fx">Lowest FX fees</button>
 			<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="strong-protection">Strongest protection</button>
+			<button type="button" class="broker-compare-chip" id="toggleFeeChart">FX fee chart</button>
 		</div>
 
 		<div class="broker-compare-toolbar d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center mb-3">
 			<input type="search" id="dynamicTableSearch" class="form-control flex-grow-1" placeholder="Try filtering by name, bank, protection..." autocomplete="off">
-			<div class="d-flex flex-wrap gap-2">
-				<div class="dropdown">
-					<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Columns</button>
-					<ul class="dropdown-menu dropdown-menu-end shadow p-2" id="columnToggleMenu" style="--bs-dropdown-min-width: 14rem;"></ul>
-				</div>
-				<button type="button" class="btn btn-outline-secondary broker-compare-chip" id="toggleFeeChart">FX fee chart</button>
+			<div class="dropdown">
+				<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Columns</button>
+				<ul class="dropdown-menu dropdown-menu-end shadow p-2" id="columnToggleMenu" style="--bs-dropdown-min-width: 14rem;"></ul>
 			</div>
 		</div>
 
