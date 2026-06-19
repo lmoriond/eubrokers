@@ -122,12 +122,12 @@
 
             <div class="mb-3">
               <label class="form-label fw-semibold" for="ecbRate">ECB deposit rate (%)</label>
-              <input type="number" step="0.01" class="form-control form-control-lg" id="ecbRate" value="2.15">
+              <input type="number" step="0.01" class="form-control form-control-lg" id="ecbRate" value="2.40">
             </div>
 
             <div class="mb-3">
               <label class="form-label fw-semibold" for="inflationRate">EU area YoY inflation (%)</label>
-              <input type="number" step="0.01" class="form-control form-control-lg" id="inflationRate" value="3.00">
+              <input type="number" step="0.01" class="form-control form-control-lg" id="inflationRate" value="3.20">
             </div>
 
             <div class="mb-3">
@@ -159,13 +159,13 @@
               <div class="col-6 col-xl-3">
                 <div class="p-3 rounded-4 bg-body">
                   <div class="metric-label">ECB rate</div>
-                  <div class="metric-value mt-2" id="showEcbRate">2.15%</div>
+                  <div class="metric-value mt-2" id="showEcbRate">2.40%</div>
                 </div>
               </div>
               <div class="col-6 col-xl-3">
                 <div class="p-3 rounded-4 bg-body">
                   <div class="metric-label">Inflation EU</div>
-                  <div class="metric-value mt-2" id="showInflationRate">3.00%</div>
+                  <div class="metric-value mt-2" id="showInflationRate">3.20%</div>
                 </div>
               </div>
               <div class="col-6 col-xl-3">
@@ -226,12 +226,12 @@
                 <tbody>
                   <tr>
                     <td>ECB deposit rate</td>
-                    <td id="tableEcbRate">2.15%</td>
+                    <td id="tableEcbRate">2.40%</td>
                     <td>Higher rates often support cash and pressure valuation multiples.</td>
                   </tr>
                   <tr>
                     <td>EU inflation</td>
-                    <td id="tableInflationRate">3.00%</td>
+                    <td id="tableInflationRate">3.20%</td>
                     <td>Watch whether nominal returns are beating inflation.</td>
                   </tr>
                   <tr>
@@ -269,8 +269,8 @@
   <script>
     // Live-fed defaults with a reliable baseline fallback matrix
     const defaults = {
-      ecbRate: 2.15,
-      inflationRate: 3.00,
+      ecbRate: 2.40,
+      inflationRate: 3.20,
       stocksGreed: 63,
       cryptoGreed: 34
     };
@@ -341,7 +341,7 @@
         }
 
         // Set the latest current dynamic central bank baseline benchmark directly
-        defaults.ecbRate = 2.15; 
+        defaults.ecbRate = 2.40; 
         document.getElementById('ecbRate').value = defaults.ecbRate;
 
         if (statusEl) {
