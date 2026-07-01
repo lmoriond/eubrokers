@@ -85,13 +85,6 @@
       height: 8px;
       border-radius: 4px;
     }
-    /* Macro Regimes Custom Colors */
-    .regime-1 { background-color: #5c8a97; color: #fff; border-radius: 0.5rem; }
-    .regime-2 { background-color: #4a618c; color: #fff; border-radius: 0.5rem; }
-    .regime-3 { background-color: #a3685f; color: #fff; border-radius: 0.5rem; }
-    .regime-4 { background-color: var(--bs-card-bg); color: var(--bs-body-color); border: 2px solid var(--bs-border-color); border-radius: 0.5rem; }
-    .axis-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--bs-secondary-color); }
-    .vertical-axis-text { writing-mode: vertical-lr; transform: rotate(180deg); }
   </style>
 </head>
 
@@ -394,110 +387,80 @@
         <div class="col-12">
           <div class="card portfolio-card bg-body-tertiary p-4 p-md-5">
             <div class="mb-4">
-              <h2 class="h3 fw-bold mb-1">Asset Performance Across Economic Regimes</h2>
-              <p class="text-body-secondary m-0">The relationship between asset conditions, changing economic activity cycles, and inflation rates.</p>
+              <h2 class="h3 fw-bold mb-1">Macroeconomic Impacts on Dividend Stocks</h2>
+              <p class="text-body-secondary m-0">Understanding how dividend assets perform across varying interest rate environments and economic phases.</p>
             </div>
 
-            <div class="row g-0 align-items-center position-relative">
-              
-              <div class="col-auto d-none d-md-flex flex-column justify-content-between align-items-center pe-3 position-absolute start-0 h-100" style="width: 40px; margin-left: -20px;">
-                <span class="axis-label text-center">High<br>Activity</span>
-                <div class="axis-label vertical-axis-text py-3 text-nowrap border-start border-secondary border-2 h-50 text-center">Economic Activity</div>
-                <span class="axis-label text-center">Low<br>Activity</span>
-              </div>
-
-              <div class="col-12 ps-md-4">
-                <div class="row g-3">
-                  
-                  <div class="col-12 col-md-6">
-                    <div class="p-4 h-100 regime-1 shadow-sm d-flex flex-column justify-content-between">
-                      <div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                          <h4 class="fs-5 fw-bold m-0">REGIME 1</h4>
-                          <span class="badge bg-white text-dark opacity-75 small">Growth / Low Inflation</span>
-                        </div>
-                        <p class="small opacity-90 mb-3">High economic activity combined with weak or declining inflation conditions.</p>
-                      </div>
-                      <ul class="list-unstyled m-0 fw-semibold ps-1">
-                        <li class="mb-1">✓ Equity</li>
-                        <li class="mb-1">✓ High Yield</li>
-                        <li class="m-0">✓ Investment Grade</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="col-12 col-md-6">
-                    <div class="p-4 h-100 regime-2 shadow-sm d-flex flex-column justify-content-between">
-                      <div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                          <h4 class="fs-5 fw-bold m-0">REGIME 2</h4>
-                          <span class="badge bg-white text-dark opacity-75 small">Growth / Inflation</span>
-                        </div>
-                        <p class="small opacity-90 mb-3">High economic activity occurring alongside high or rising inflation parameters.</p>
-                      </div>
-                      <div class="row g-0">
-                        <div class="col-6">
-                          <ul class="list-unstyled m-0 fw-semibold ps-1">
-                            <li class="mb-1">✓ Commodities</li>
-                            <li class="mb-1">✓ Equity</li>
-                            <li class="m-0">✓ High Yield</li>
-                          </ul>
-                        </div>
-                        <div class="col-6">
-                          <ul class="list-unstyled m-0 fw-semibold ps-1">
-                            <li class="mb-1">✓ Gold</li>
-                            <li class="m-0">✓ Housing</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-12 col-md-6">
-                    <div class="p-4 h-100 regime-4 shadow-sm d-flex flex-column justify-content-between">
-                      <div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                          <h4 class="fs-5 fw-bold m-0">REGIME 4</h4>
-                          <span class="badge bg-white text-dark opacity-75 small">Recession / Deflation</span>
-                        </div>
-                        <p class="small text-body-secondary mb-3">Low economic activity paired with weak or steadily declining market inflation levels.</p>
-                      </div>
-                      <ul class="list-unstyled m-0 fw-semibold ps-1">
-                        <li class="m-0">✓ Nominal Bonds</li>
-                        <li class="m-0">✓ Investment Grade</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="col-12 col-md-6">
-                    <div class="p-4 h-100 regime-3 shadow-sm d-flex flex-column justify-content-between">
-                      <div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                          <h4 class="fs-5 fw-bold m-0">REGIME 3</h4>
-                          <span class="badge bg-white text-dark opacity-75 small">Stagflation</span>
-                        </div>
-                        <p class="small opacity-90 mb-3">Low economic activity mixed with high or rapidly rising consumer inflation.</p>
-                      </div>
-                      <ul class="list-unstyled m-0 fw-semibold ps-1">
-                        <li class="mb-1">✓ Gold</li>
-                        <li class="mb-1">✓ Commodities</li>
-                        <li class="m-0">✓ Inflation Linked</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="col-12 d-none d-md-block mt-4 ps-4">
-                <div class="d-flex justify-content-between align-items-center border-top border-secondary border-2 pt-2">
-                  <span class="axis-label">← Weak / Declining Inflation</span>
-                  <span class="axis-label fs-6 text-primary tracking-normal">Inflation Factor Matrix</span>
-                  <span class="axis-label">High / Rising Inflation →</span>
-                </div>
-              </div>
-
+            <h4 class="fs-5 fw-bold mb-3 mt-4 text-primary">Effect of interest rates</h4>
+            <div class="table-responsive mb-5">
+              <table class="table table-hover align-middle border-top">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 25%;">Interest Rate Environment</th>
+                    <th scope="col" style="width: 25%;">Impact on Dividend Stocks</th>
+                    <th scope="col" style="width: 50%;">Reason</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-semibold">Falling rates</td>
+                    <td><span class="badge bg-success-subtle text-success">Excellent</span></td>
+                    <td>Bond yields decline, making dividend yields relatively more attractive.</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-semibold">Stable rates</td>
+                    <td><span class="badge bg-primary-subtle text-primary">Good</span></td>
+                    <td>Companies can maintain steady earnings and dividend policies.</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-semibold">Rapidly rising rates</td>
+                    <td><span class="badge bg-warning-subtle text-warning-emphasis">More challenging</span></td>
+                    <td>Higher bond yields compete with dividend-paying stocks, especially slower-growth companies.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+
+            <h4 class="fs-5 fw-bold mb-3 text-primary">Economic Phases</h4>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle border-top">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 15%;">Economic Phase</th>
+                    <th scope="col" style="width: 15%;">Dividend Investing</th>
+                    <th scope="col" style="width: 40%;">Typical Investor Behavior</th>
+                    <th scope="col" style="width: 30%;">Sectors That Often Benefit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-semibold">Early Recovery</td>
+                    <td><span class="badge bg-primary-subtle text-primary">Good</span></td>
+                    <td>Earnings recover, companies resume dividend growth. Growth stocks often outperform overall.</td>
+                    <td>Financials, Industrials, Consumer Discretionary</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-semibold">Mid Expansion</td>
+                    <td><span class="badge bg-secondary-subtle text-secondary">Moderate</span></td>
+                    <td>Investors favor growth companies over income-producing stocks.</td>
+                    <td>Technology, Industrials, Consumer Discretionary</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-semibold">Late Expansion</td>
+                    <td><span class="badge bg-success-subtle text-success">Very Good</span></td>
+                    <td>Investors become more defensive and seek stable cash flows.</td>
+                    <td>Consumer Staples, Healthcare, Utilities</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-semibold">Recession</td>
+                    <td><span class="badge bg-success-subtle text-success">Very Good</span></td>
+                    <td>High-quality dividend companies are often viewed as defensive investments.</td>
+                    <td>Utilities, Consumer Staples, Healthcare, Telecommunications</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
           </div>
         </div>
       </div>
