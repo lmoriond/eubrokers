@@ -5,7 +5,35 @@
 }
 
 .broker-compare-chips {
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
+}
+
+.broker-compare-scroll-row {
+    position: relative;
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+}
+
+.broker-compare-chips-scroll {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0.25rem;
+    mask-image: linear-gradient(to right, transparent, #000 0.75rem, #000 calc(100% - 0.75rem), transparent);
+}
+
+.broker-compare-chips-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.broker-compare-chips-scroll .broker-compare-chip {
+    scroll-snap-align: start;
+    flex-shrink: 0;
 }
 
 .broker-compare-chip {
@@ -14,9 +42,10 @@
     background: var(--bs-body-bg);
     color: var(--bs-body-color);
     font-size: 0.875rem;
-    padding: 0.35rem 0.75rem;
+    padding: 0.4rem 0.85rem;
     border-radius: var(--bs-border-radius-pill);
-    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
 }
 
 .broker-compare-chip:hover {
@@ -24,10 +53,15 @@
     color: var(--bs-primary);
 }
 
+.broker-compare-chip:active {
+    transform: scale(0.97);
+}
+
 .broker-compare-chip.active {
     background: var(--bs-primary);
     border-color: var(--bs-primary);
     color: var(--bs-white);
+    box-shadow: 0 2px 8px rgba(var(--bs-primary-rgb), 0.25);
 }
 
 .broker-compare-highlight {
@@ -35,10 +69,98 @@
     font-size: 0.8125rem;
 }
 
+.broker-compare-search-input {
+    padding-left: 2.5rem;
+    padding-right: 2.25rem;
+    border-radius: var(--bs-border-radius-pill);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.broker-compare-search-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.15);
+}
+
+.broker-compare-search-icon {
+    position: absolute;
+    left: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--bs-secondary-color);
+    pointer-events: none;
+}
+
+.broker-compare-search-clear {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background: transparent;
+    color: var(--bs-secondary-color);
+    font-size: 1.35rem;
+    line-height: 1;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.broker-compare-search-clear:hover {
+    background: var(--bs-secondary-bg);
+    color: var(--bs-body-color);
+}
+
+.broker-compare-active-filters .badge {
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.broker-compare-active-filters .badge:hover {
+    opacity: 0.85;
+}
+
+.broker-compare-filter-panel.collapse:not(.show) {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .broker-compare-filter-panel.collapse:not(.show) {
+        display: block;
+    }
+}
+
+.broker-compare-table-container {
+    border-radius: var(--bs-border-radius-xl);
+    box-shadow: var(--bs-box-shadow-sm);
+    background: var(--bs-body-bg);
+    overflow: hidden;
+}
+
 .broker-compare-table-wrap {
     overflow: auto;
     max-height: min(72vh, 720px);
     -webkit-overflow-scrolling: touch;
+    position: relative;
+}
+
+.broker-compare-table-wrap.is-scrollable-x::after {
+    content: "";
+    position: sticky;
+    right: 0;
+    top: 0;
+    float: right;
+    width: 1.5rem;
+    height: 100%;
+    margin-left: -1.5rem;
+    pointer-events: none;
+    background: linear-gradient(to left, var(--bs-body-bg), transparent);
+}
+
+#dynamicTable {
+    margin-bottom: 0;
 }
 
 #dynamicTable thead th {
@@ -47,6 +169,11 @@
     top: 0;
     z-index: 3;
     box-shadow: 0 1px 0 var(--bs-border-color);
+    font-size: 0.8125rem;
+    white-space: nowrap;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    transition: background 0.15s ease;
 }
 
 #dynamicTable thead th.sortable {
@@ -54,14 +181,46 @@
     user-select: none;
 }
 
+#dynamicTable thead th.sortable:hover {
+    background: var(--bs-tertiary-bg) !important;
+}
+
+#dynamicTable thead th.sortable .sort-indicator {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-left: 0.15rem;
+    opacity: 0.35;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+#dynamicTable thead th.sortable.is-sorted .sort-indicator {
+    opacity: 1;
+    color: var(--bs-primary);
+}
+
+#dynamicTable thead th[data-col="broker"],
+#dynamicTable tbody td[data-field="broker"] {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: var(--bs-body-bg);
+    box-shadow: 1px 0 0 var(--bs-border-color);
+    min-width: 9rem;
+}
+
+#dynamicTable thead th[data-col="broker"] {
+    z-index: 4;
+}
+
 #dynamicTable tbody tr {
-    height: 70px;
+    transition: background-color 0.15s ease;
 }
 
 #dynamicTable tbody tr > td {
     vertical-align: middle !important;
-    padding-top: 18px !important;
-    padding-bottom: 18px !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    font-size: 0.875rem;
 }
 
 #dynamicTable thead th[data-col]:not([data-col="regulator"]),
@@ -71,9 +230,31 @@
 
 #dynamicTable tbody td[data-field="broker"] .broker-name-btn {
     display: inline-block;
+    text-align: left;
+    transition: color 0.15s ease;
+}
+
+#dynamicTable tbody td[data-field="broker"] .broker-name-btn:hover {
+    color: var(--bs-primary) !important;
 }
 
 #dynamicTable tbody tr.row-selected {
+    background-color: rgba(var(--bs-primary-rgb), 0.08);
+}
+
+#dynamicTable tbody tr.row-selected td[data-field="broker"] {
+    background-color: rgba(var(--bs-primary-rgb), 0.08);
+}
+
+#dynamicTable tbody tr:hover {
+    background-color: rgba(var(--bs-emphasis-color-rgb), 0.03);
+}
+
+#dynamicTable tbody tr:hover td[data-field="broker"] {
+    background-color: var(--bs-body-bg);
+}
+
+#dynamicTable tbody tr.row-selected:hover td[data-field="broker"] {
     background-color: rgba(var(--bs-primary-rgb), 0.08);
 }
 
@@ -86,18 +267,155 @@
     display: none;
 }
 
+.broker-fee-chart-panel {
+    overflow: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.35s ease;
+}
+
+.broker-fee-chart-panel.is-visible {
+    animation: brokerChartIn 0.35s ease;
+}
+
+@keyframes brokerChartIn {
+    from {
+        opacity: 0;
+        transform: translateY(-0.5rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.broker-fee-bar-track {
+    height: 1.35rem;
+    border-radius: var(--bs-border-radius-pill);
+    background: var(--bs-secondary-bg);
+    overflow: hidden;
+}
+
 .broker-fee-bar {
-    height: 1.25rem;
-    border-radius: var(--bs-border-radius);
-    background: var(--bs-primary);
-    min-width: 2px;
-    transition: width 0.25s ease;
+    height: 100%;
+    border-radius: var(--bs-border-radius-pill);
+    background: linear-gradient(90deg, var(--bs-primary), rgba(var(--bs-primary-rgb), 0.75));
+    min-width: 4px;
+    width: 0;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.broker-fee-bar-row {
+    opacity: 0;
+    transform: translateX(-0.35rem);
+    animation: brokerBarRowIn 0.4s ease forwards;
+}
+
+@keyframes brokerBarRowIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .broker-fee-bar-label {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--bs-body-color);
+    min-width: 6.5rem;
+    max-width: 6.5rem;
+    font-weight: 500;
+}
+
+.broker-compare-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.broker-compare-card {
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color-translucent);
+    border-radius: var(--bs-border-radius-xl);
+    padding: 1rem 1.1rem;
+    box-shadow: var(--bs-box-shadow-sm);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    animation: brokerCardIn 0.35s ease backwards;
+}
+
+.broker-compare-card:active {
+    transform: scale(0.995);
+}
+
+.broker-compare-card.is-selected {
+    border-color: rgba(var(--bs-primary-rgb), 0.45);
+    box-shadow: 0 0 0 1px rgba(var(--bs-primary-rgb), 0.15), var(--bs-box-shadow-sm);
+    background: rgba(var(--bs-primary-rgb), 0.04);
+}
+
+@keyframes brokerCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(0.4rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.broker-compare-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+}
+
+.broker-compare-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-shrink: 0;
+}
+
+.broker-compare-card-actions .form-check-input {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0;
+    cursor: pointer;
+}
+
+.broker-compare-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem 0.75rem;
+}
+
+.broker-compare-card-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.broker-compare-card-metric-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
     color: var(--bs-secondary-color);
-    min-width: 5.5rem;
+    font-weight: 600;
+}
+
+.broker-compare-card-metric .badge {
+    font-size: 0.75rem;
+    align-self: flex-start;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.broker-compare-card-footer {
+    margin-top: 0.85rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--bs-border-color-translucent);
 }
 
 .broker-compare-panel {
@@ -107,6 +425,7 @@
 .broker-compare-metric-diff {
     font-size: 0.75rem;
     color: var(--bs-primary);
+    font-weight: 600;
 }
 
 .broker-compare-bar {
@@ -116,8 +435,9 @@
     right: 0;
     z-index: 1040;
     transform: translateY(100%);
-    transition: transform 0.25s ease;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     border-top: 1px solid var(--bs-border-color);
+    padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
 .broker-compare-bar.is-visible {
@@ -125,7 +445,7 @@
 }
 
 body:has(.broker-compare-bar.is-visible) {
-    padding-bottom: 4.5rem;
+    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0));
 }
 
 .broker-detail-drawer .offcanvas-body {
@@ -136,6 +456,7 @@ body:has(.broker-compare-bar.is-visible) {
     min-height: 4.5rem;
     border: 1px dashed var(--bs-border-color);
     border-radius: var(--bs-border-radius-lg);
+    transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .broker-compare-slot.filled {
@@ -143,8 +464,40 @@ body:has(.broker-compare-bar.is-visible) {
     background: var(--bs-body-tertiary);
 }
 
-@media (max-width: 575.98px) {
+.broker-compare-scroll-hint {
+    opacity: 0.75;
+}
+
+@media (max-width: 991.98px) {
     .broker-compare-toolbar .form-control {
         font-size: 1rem;
+    }
+
+    .broker-compare-table-container {
+        display: none !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .broker-compare-card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .broker-compare-chip,
+    .broker-compare-card,
+    .broker-fee-bar,
+    .broker-compare-bar,
+    .broker-fee-chart-panel,
+    #dynamicTable tbody tr {
+        transition: none;
+        animation: none;
+    }
+
+    .broker-fee-bar-row {
+        opacity: 1;
+        transform: none;
+        animation: none;
     }
 }

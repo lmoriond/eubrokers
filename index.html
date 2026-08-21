@@ -759,40 +759,72 @@
 			</p>
 		</div>
 
-		<div class="d-flex flex-wrap broker-compare-chips gap-2 mb-4" role="group" aria-label="Quick highlights">
-			<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="cheapest-trading">Lowest trading fees</button>
-			<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="lowest-fx">Lowest FX fees</button>
-			<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="strong-protection">Strongest protection</button>
-			<button type="button" class="broker-compare-chip" id="toggleFeeChart">FX fee chart</button>
-		</div>
-
-		<div class="broker-compare-toolbar d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center mb-3">
-			<input type="search" id="dynamicTableSearch" class="form-control flex-grow-1" placeholder="Try filtering by name, bank, protection..." autocomplete="off">
-			<div class="dropdown">
-				<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Columns</button>
-				<ul class="dropdown-menu dropdown-menu-end shadow p-2" id="columnToggleMenu" style="--bs-dropdown-min-width: 14rem;"></ul>
+		<div class="broker-compare-scroll-row mb-3" role="group" aria-label="Quick highlights">
+			<div class="broker-compare-chips broker-compare-chips-scroll">
+				<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="cheapest-trading">Lowest trading fees</button>
+				<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="lowest-fx">Lowest FX fees</button>
+				<button type="button" class="broker-compare-chip broker-compare-highlight" data-highlight="strong-protection">Strongest protection</button>
+				<button type="button" class="broker-compare-chip" id="toggleFeeChart" aria-expanded="false" aria-controls="feeChartPanel">FX fee chart</button>
 			</div>
 		</div>
 
-		<div class="d-flex flex-wrap broker-compare-chips mb-4" role="group" aria-label="Filters">
-			<button type="button" class="broker-compare-chip" data-filter="zero-stocks">Zero stock fees</button>
-			<button type="button" class="broker-compare-chip" data-filter="zero-etf">Zero ETF fees</button>
-			<button type="button" class="broker-compare-chip" data-filter="bank">Bank regulated</button>
-			<button type="button" class="broker-compare-chip" data-filter="protection-100k">€100k protection</button>
-			<button type="button" class="broker-compare-chip" data-filter="free-withdrawal">Free withdrawal</button>
-			<button type="button" class="broker-compare-chip" data-filter="no-inactivity">No inactivity fee</button>
-			<button type="button" class="broker-compare-chip" data-filter="free-transfer">Free securities transfer</button>
+		<div class="broker-compare-toolbar d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-2 mb-3">
+			<div class="broker-compare-search flex-grow-1 position-relative">
+				<svg class="broker-compare-search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+					<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.04.045.083.085l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.1-.172m-5.48 0a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0"/>
+				</svg>
+				<input type="search" id="dynamicTableSearch" class="form-control broker-compare-search-input" placeholder="Search by name, regulator, protection..." autocomplete="off" aria-label="Search brokers">
+				<button type="button" class="broker-compare-search-clear d-none" id="clearSearch" aria-label="Clear search">&times;</button>
+			</div>
+			<div class="d-flex gap-2 flex-shrink-0">
+				<button type="button" class="btn btn-outline-secondary d-lg-none" id="toggleMobileFilters" aria-expanded="false" aria-controls="brokerFilterPanel">Filters</button>
+				<div class="dropdown">
+					<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Columns</button>
+					<ul class="dropdown-menu dropdown-menu-end shadow p-2" id="columnToggleMenu" style="--bs-dropdown-min-width: 14rem;"></ul>
+				</div>
+			</div>
 		</div>
 
-		<div id="feeChartPanel" class="d-none p-4 mb-4 bg-body-tertiary shadow rounded-4">
+		<div class="broker-compare-active-filters d-none align-items-center flex-wrap gap-2 mb-3" id="activeFiltersBar" aria-live="polite">
+			<span class="small text-body-secondary fw-semibold">Active:</span>
+			<div class="d-flex flex-wrap gap-2" id="activeFilterTags"></div>
+			<button type="button" class="btn btn-link btn-sm p-0 text-decoration-none" id="clearAllFilters">Clear all</button>
+		</div>
+
+		<div class="broker-compare-filter-panel collapse d-lg-block" id="brokerFilterPanel">
+			<div class="broker-compare-scroll-row mb-4" role="group" aria-label="Filters">
+				<div class="broker-compare-chips broker-compare-chips-scroll">
+					<button type="button" class="broker-compare-chip" data-filter="zero-stocks">Zero stock fees</button>
+					<button type="button" class="broker-compare-chip" data-filter="zero-etf">Zero ETF fees</button>
+					<button type="button" class="broker-compare-chip" data-filter="bank">Bank regulated</button>
+					<button type="button" class="broker-compare-chip" data-filter="protection-100k">€100k protection</button>
+					<button type="button" class="broker-compare-chip" data-filter="free-withdrawal">Free withdrawal</button>
+					<button type="button" class="broker-compare-chip" data-filter="no-inactivity">No inactivity fee</button>
+					<button type="button" class="broker-compare-chip" data-filter="free-transfer">Free securities transfer</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="feeChartPanel" class="broker-fee-chart-panel d-none p-4 mb-4 bg-body-tertiary shadow rounded-4" aria-hidden="true">
 			<h3 class="h6 text-body-emphasis fw-semibold mb-3">FX fees (filtered brokers)</h3>
 			<div id="feeChartBars"></div>
 		</div>
 
-		<p class="small text-body-secondary mb-2" id="brokerCompareCount" aria-live="polite"></p>
+		<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+			<p class="small text-body-secondary mb-0" id="brokerCompareCount" aria-live="polite"></p>
+			<span class="broker-compare-scroll-hint small text-body-secondary d-none d-md-inline">Scroll table horizontally for more columns</span>
+		</div>
 
-		<div class="table-container">
-			<div class="table-content broker-compare-table-wrap">
+		<div class="broker-compare-empty d-none text-center py-5 px-3 bg-body-tertiary rounded-4 shadow-sm" id="brokerCompareEmpty">
+			<p class="text-body-emphasis fw-semibold mb-1">No brokers match your filters</p>
+			<p class="text-body-secondary small mb-3">Try removing a filter or changing your search.</p>
+			<button type="button" class="btn btn-outline-primary btn-sm" id="emptyClearFilters">Reset filters</button>
+		</div>
+
+		<div class="broker-compare-cards d-lg-none" id="brokerCompareCards" aria-label="Broker list"></div>
+
+		<div class="table-container broker-compare-table-container d-none d-lg-block">
+			<div class="table-content broker-compare-table-wrap" id="brokerTableScroll">
 				<table class="table table-hover align-middle mb-0" id="dynamicTable">
 					<thead><tr></tr></thead>
 					<tbody></tbody>

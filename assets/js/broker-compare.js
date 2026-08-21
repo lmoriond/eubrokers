@@ -6,6 +6,15 @@
 
     const INFO_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-main-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>`;
 
+    const SORT_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>`;
+
+    const CARD_METRICS = [
+        { key: 'stocksFees', label: 'Stocks', badge: 'fee' },
+        { key: 'etfFees', label: 'ETF', badge: 'fee' },
+        { key: 'fxFee', label: 'FX', badge: 'fee' },
+        { key: 'protection', label: 'Protection', badge: 'protection' },
+    ];
+
     const COLUMNS = [
         { key: 'broker', label: 'Broker', sortable: true, alwaysVisible: true },
         { key: 'info', label: 'Info/Referral', sortable: false, alwaysVisible: true },
@@ -54,6 +63,8 @@
         { id: 'strong-protection', label: 'Strongest protection', match: (b) => protectionScore(b.protection) >= 100 },
     ];
 
+    const MOBILE_QUERY = '(max-width: 991.98px)';
+
     const state = {
         search: '',
         activeFilters: new Set(),
@@ -65,7 +76,7 @@
         showChart: false,
     };
 
-    let table, tbody, compareBar, detailDrawer, compareOffcanvas;
+    let table, tbody, compareBar, detailDrawer, compareOffcanvas, cardsContainer, searchInput, searchDebounceTimer;
 
     function parseNumber(str) {
         const m = String(str).match(/[\d.]+/g);
@@ -129,6 +140,14 @@
         return d.innerHTML;
     }
 
+    function sortIndicatorHtml(colKey) {
+        if (state.sortKey !== colKey) {
+            return `<span class="sort-indicator">${SORT_ICON}</span>`;
+        }
+        const rotated = state.sortDir === -1 ? ' style="transform:rotate(180deg)"' : '';
+        return `<span class="sort-indicator"${rotated}>${SORT_ICON}</span>`;
+    }
+
     function sortValue(broker, key) {
         if (key === 'broker') return broker.name.toLowerCase();
         const raw = broker[key];
@@ -164,9 +183,78 @@
         return list;
     }
 
+    function isMobileView() {
+        return window.matchMedia(MOBILE_QUERY).matches;
+    }
+
+    function updateSearchClearButton() {
+        const btn = document.getElementById('clearSearch');
+        if (!btn) return;
+        btn.classList.toggle('d-none', !state.search.trim());
+    }
+
+    function updateActiveFiltersBar() {
+        const bar = document.getElementById('activeFiltersBar');
+        const tags = document.getElementById('activeFilterTags');
+        if (!bar || !tags) return;
+
+        const items = [];
+        if (state.search.trim()) {
+            items.push({ type: 'search', label: `Search: "${state.search.trim()}"` });
+        }
+        if (state.activeHighlight) {
+            const h = HIGHLIGHTS.find((x) => x.id === state.activeHighlight);
+            if (h) items.push({ type: 'highlight', id: h.id, label: h.label });
+        }
+        FILTERS.forEach((f) => {
+            if (state.activeFilters.has(f.id)) items.push({ type: 'filter', id: f.id, label: f.label });
+        });
+
+        bar.classList.toggle('d-none', items.length === 0);
+        bar.classList.toggle('d-flex', items.length > 0);
+
+        tags.innerHTML = items.map((item) =>
+            `<button type="button" class="badge rounded-pill text-bg-secondary border-0 broker-active-filter-tag" data-remove-type="${item.type}" data-remove-id="${item.id || ''}">${escapeHtml(item.label)} &times;</button>`
+        ).join('');
+
+        tags.querySelectorAll('.broker-active-filter-tag').forEach((tag) => {
+            tag.onclick = () => removeActiveItem(tag.getAttribute('data-remove-type'), tag.getAttribute('data-remove-id'));
+        });
+    }
+
+    function removeActiveItem(type, id) {
+        if (type === 'search') {
+            state.search = '';
+            if (searchInput) searchInput.value = '';
+            updateSearchClearButton();
+        } else if (type === 'highlight') {
+            state.activeHighlight = null;
+            document.querySelectorAll('.broker-compare-highlight').forEach((b) => b.classList.remove('active'));
+        } else if (type === 'filter') {
+            state.activeFilters.delete(id);
+            document.querySelectorAll(`.broker-compare-chip[data-filter="${id}"]`).forEach((chip) => chip.classList.remove('active'));
+        }
+        renderTable();
+    }
+
+    function clearAllFilters() {
+        state.search = '';
+        state.activeFilters.clear();
+        state.activeHighlight = null;
+        if (searchInput) searchInput.value = '';
+        document.querySelectorAll('.broker-compare-chip').forEach((chip) => chip.classList.remove('active'));
+        updateSearchClearButton();
+        renderTable();
+    }
+
     function renderTable() {
         const brokers = filteredBrokers();
         const visibleCols = COLUMNS.filter((c) => c.alwaysVisible || !state.hiddenColumns.has(c.key));
+        const isEmpty = brokers.length === 0;
+
+        document.getElementById('brokerCompareEmpty').classList.toggle('d-none', !isEmpty);
+        document.getElementById('brokerCompareCards').classList.toggle('d-none', isEmpty);
+        document.querySelector('.broker-compare-table-container')?.classList.toggle('d-none', isEmpty);
 
         let head = '<tr>';
         visibleCols.forEach((col) => {
@@ -176,10 +264,9 @@
             }
             const hidden = state.hiddenColumns.has(col.key) ? ' col-hidden' : '';
             const sortable = col.sortable ? ' sortable' : '';
-            const indicator = col.sortable && state.sortKey === col.key
-                ? (state.sortDir === 1 ? ' ▲' : ' ▼')
-                : '';
-            head += `<th scope="col" data-col="${col.key}" class="fw-bold${sortable}${hidden}">${col.label}<span class="sort-indicator">${indicator}</span></th>`;
+            const sorted = col.sortable && state.sortKey === col.key ? ' is-sorted' : '';
+            const indicator = col.sortable ? sortIndicatorHtml(col.key) : '';
+            head += `<th scope="col" data-col="${col.key}" class="fw-bold${sortable}${sorted}${hidden}"${col.sortable ? ' aria-sort="' + (state.sortKey === col.key ? (state.sortDir === 1 ? 'ascending' : 'descending') : 'none') + '"' : ''}>${col.label}${indicator}</th>`;
         });
         head += '</tr>';
         table.querySelector('thead').innerHTML = head;
@@ -205,13 +292,50 @@
             return row;
         }).join('');
 
+        renderCards(brokers);
+
         document.getElementById('brokerCompareCount').textContent =
             `${brokers.length} of ${BROKERS.length} brokers`;
 
+        updateActiveFiltersBar();
         bindTableEvents();
+        bindCardEvents();
         reinitTooltips();
         renderFeeChart(brokers);
         updateCompareBar();
+        updateTableScrollHint();
+    }
+
+    function renderCards(brokers) {
+        if (!cardsContainer) return;
+
+        cardsContainer.innerHTML = brokers.map((b, index) => {
+            const selected = state.compareIds.includes(b.id);
+            const disabled = !selected && state.compareIds.length >= 3 ? ' disabled' : '';
+            const checked = selected ? ' checked' : '';
+            const delay = Math.min(index * 35, 350);
+
+            return `<article class="broker-compare-card${selected ? ' is-selected' : ''}" data-broker-id="${b.id}" style="animation-delay:${delay}ms">
+                <div class="broker-compare-card-header">
+                    <button type="button" class="btn btn-link p-0 text-body-emphasis fw-semibold text-decoration-none text-start broker-name-btn" data-broker-id="${b.id}">${escapeHtml(b.name)}</button>
+                    <div class="broker-compare-card-actions">
+                        <a href="${escapeHtml(b.infoUrl)}" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-title="${escapeHtml(b.infoTooltip)}" aria-label="Info for ${escapeHtml(b.name)}">${INFO_ICON}</a>
+                        <input type="checkbox" class="form-check-input broker-compare-check" data-broker-id="${b.id}"${checked}${disabled} aria-label="Compare ${escapeHtml(b.name)}">
+                    </div>
+                </div>
+                <div class="broker-compare-card-grid">
+                    ${CARD_METRICS.map((m) => `
+                        <div class="broker-compare-card-metric">
+                            <span class="broker-compare-card-metric-label">${m.label}</span>
+                            ${badgeHtml(b[m.key], m.badge)}
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="broker-compare-card-footer">
+                    <button type="button" class="btn btn-sm btn-outline-secondary w-100 broker-card-details-btn" data-broker-id="${b.id}">View all details</button>
+                </div>
+            </article>`;
+        }).join('');
     }
 
     function bindTableEvents() {
@@ -230,6 +354,17 @@
             btn.onclick = () => openDetail(btn.getAttribute('data-broker-id'));
         });
         tbody.querySelectorAll('.broker-compare-check').forEach((cb) => {
+            cb.onchange = () => toggleCompare(cb.getAttribute('data-broker-id'), cb.checked);
+        });
+    }
+
+    function bindCardEvents() {
+        if (!cardsContainer) return;
+
+        cardsContainer.querySelectorAll('.broker-name-btn, .broker-card-details-btn').forEach((btn) => {
+            btn.onclick = () => openDetail(btn.getAttribute('data-broker-id'));
+        });
+        cardsContainer.querySelectorAll('.broker-compare-check').forEach((cb) => {
             cb.onchange = () => toggleCompare(cb.getAttribute('data-broker-id'), cb.checked);
         });
     }
@@ -318,11 +453,21 @@
 
     function renderFeeChart(brokers) {
         const panel = document.getElementById('feeChartPanel');
+        const toggleBtn = document.getElementById('toggleFeeChart');
+
         if (!state.showChart) {
             panel.classList.add('d-none');
+            panel.classList.remove('is-visible');
+            panel.setAttribute('aria-hidden', 'true');
+            if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
             return;
         }
+
         panel.classList.remove('d-none');
+        panel.classList.add('is-visible');
+        panel.setAttribute('aria-hidden', 'false');
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+
         const chart = document.getElementById('feeChartBars');
         const top = [...brokers]
             .map((b) => ({ name: b.name, fx: parsePercent(b.fxFee) }))
@@ -330,23 +475,46 @@
             .sort((a, b) => a.fx - b.fx)
             .slice(0, 8);
         const max = Math.max(...top.map((x) => x.fx), 0.01);
-        chart.innerHTML = top.map((x) => {
+
+        chart.innerHTML = top.map((x, i) => {
             const w = Math.max(4, (x.fx / max) * 100);
-            return `<div class="d-flex align-items-center gap-2 mb-2">
+            return `<div class="broker-fee-bar-row d-flex align-items-center gap-2 mb-2" style="animation-delay:${i * 50}ms">
                 <span class="broker-fee-bar-label text-truncate">${escapeHtml(x.name)}</span>
-                <div class="flex-grow-1 bg-body-secondary rounded" style="height:1.25rem">
-                    <div class="broker-fee-bar" style="width:${w}%" title="${x.fx}%"></div>
+                <div class="flex-grow-1 broker-fee-bar-track">
+                    <div class="broker-fee-bar" data-width="${w}" title="${x.fx}%"></div>
                 </div>
-                <span class="small text-body-secondary">${x.fx}%</span>
+                <span class="small text-body-secondary text-nowrap">${x.fx}%</span>
             </div>`;
         }).join('');
+
+        requestAnimationFrame(() => {
+            chart.querySelectorAll('.broker-fee-bar').forEach((bar) => {
+                bar.style.width = bar.getAttribute('data-width') + '%';
+            });
+        });
+    }
+
+    function updateTableScrollHint() {
+        const wrap = document.getElementById('brokerTableScroll');
+        if (!wrap) return;
+
+        const check = () => {
+            wrap.classList.toggle('is-scrollable-x', wrap.scrollWidth > wrap.clientWidth + 4);
+        };
+
+        check();
+        if (!wrap._scrollHintBound) {
+            wrap._scrollHintBound = true;
+            wrap.addEventListener('scroll', () => {}, { passive: true });
+            window.addEventListener('resize', check, { passive: true });
+        }
     }
 
     function reinitTooltips() {
         document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
             const inst = bootstrap.Tooltip.getInstance(el);
             if (inst) inst.dispose();
-            new bootstrap.Tooltip(el);
+            new bootstrap.Tooltip(el, { trigger: isMobileView() ? 'click' : 'hover focus' });
         });
     }
 
@@ -368,21 +536,56 @@
         });
     }
 
+    function initMobileFilters() {
+        const toggleBtn = document.getElementById('toggleMobileFilters');
+        const panel = document.getElementById('brokerFilterPanel');
+        if (!toggleBtn || !panel) return;
+
+        toggleBtn.addEventListener('click', () => {
+            const isShown = panel.classList.contains('show');
+            panel.classList.toggle('show', !isShown);
+            toggleBtn.setAttribute('aria-expanded', String(!isShown));
+            toggleBtn.classList.toggle('active', !isShown);
+        });
+    }
+
+    function initSearch() {
+        searchInput = document.getElementById('dynamicTableSearch');
+        const clearBtn = document.getElementById('clearSearch');
+
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(() => {
+                state.search = e.target.value;
+                updateSearchClearButton();
+                renderTable();
+            }, 180);
+        });
+
+        clearBtn.addEventListener('click', () => {
+            state.search = '';
+            searchInput.value = '';
+            searchInput.focus();
+            updateSearchClearButton();
+            renderTable();
+        });
+    }
+
     function init() {
         table = document.getElementById('dynamicTable');
         tbody = table.querySelector('tbody');
         compareBar = document.getElementById('brokerCompareBar');
         detailDrawer = document.getElementById('brokerDetailDrawer');
         compareOffcanvas = document.getElementById('brokerCompareOffcanvas');
+        cardsContainer = document.getElementById('brokerCompareCards');
 
-        document.getElementById('dynamicTableSearch').addEventListener('input', (e) => {
-            state.search = e.target.value;
-            renderTable();
-        });
+        initSearch();
+        initMobileFilters();
 
-        document.querySelectorAll('.broker-compare-chip').forEach((chip) => {
+        document.querySelectorAll('.broker-compare-chip[data-filter]').forEach((chip) => {
             chip.addEventListener('click', () => {
                 const id = chip.getAttribute('data-filter');
+                if (!id) return;
                 if (state.activeFilters.has(id)) state.activeFilters.delete(id);
                 else state.activeFilters.add(id);
                 chip.classList.toggle('active', state.activeFilters.has(id));
@@ -418,6 +621,14 @@
 
         document.getElementById('clearCompare').addEventListener('click', () => {
             state.compareIds = [];
+            renderTable();
+        });
+
+        document.getElementById('clearAllFilters').addEventListener('click', clearAllFilters);
+        document.getElementById('emptyClearFilters').addEventListener('click', clearAllFilters);
+
+        window.matchMedia(MOBILE_QUERY).addEventListener('change', () => {
+            reinitTooltips();
             renderTable();
         });
 
