@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es" dir="ltr" data-bs-theme="auto">
+<head>
+    <script src="./assets/js/color-modes.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Financial Planning by Lucas">
+    <meta name="author" content="Financial Planning by Lucas">
+
+    <title>Financial Planning</title>
+    
+    <!-- Favicons & Manifest (Kept exactly as requested) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/logo/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/logo/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./assets/logo/favicon-16x16.png">
+	<link rel="icon" type="image/x-icon" href="./assets/logo/favicon.ico">
+	<link rel="manifest" href="./assets/logo/site.webmanifest">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./assets/libraries/aos/aos.css">
+    <link rel="stylesheet" href="./assets/css/main.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+ 	
+    <!-- MICROSOFT CLARITY -->
+	<script type="text/javascript">
+		(function(c,l,a,r,i,t,y){
+			c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+			t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+			y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+		})(window, document, "clarity", "script", "q2zkcogn3c");
+	</script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-40T6W14FD9"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-40T6W14FD9');
+	</script>  
+
+    <!-- CSS for Language Toggle -->
+    <style>
+        :root:lang(es) .lang-en { display: none !important; }
+        :root:lang(en) .lang-es { display: none !important; }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+    <script>
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            
+            // Update button styles
+            const btnEs = document.getElementById('btn-es');
+            const btnEn = document.getElementById('btn-en');
+            
+            if(lang === 'es') {
+                btnEs.classList.add('btn-primary', 'text-white');
+                btnEs.classList.remove('btn-outline-primary');
+                btnEn.classList.add('btn-outline-primary');
+                btnEn.classList.remove('btn-primary', 'text-white');
+            } else {
+                btnEn.classList.add('btn-primary', 'text-white');
+                btnEn.classList.remove('btn-outline-primary');
+                btnEs.classList.add('btn-outline-primary');
+                btnEs.classList.remove('btn-primary', 'text-white');
+            }
+        }
+    </script>
+</head>
+<body>
+
+	<!-- header body -->
+	<div class="overflow-hidden py-9 py-xl-10 position-relative rounded-bottom-3 rounded-sm-4 rounded-xl-5 m-0 m-sm-2 m-xl-3 shadow hero-bg">
+	    
+        <!-- EXACT Original Header Structure (placed inside position-relative container to fix margin/cut issue) -->
+        <header class="position-absolute z-3 top-0 start-0 w-100 mt-3" data-bs-theme="dark">
+            <nav class="navbar navbar-expand-xl" aria-label="Offcanvas navbar large">
+                <div class="container py-1">
+                    <a href="./index.html" class="navbar-brand">
+                        <img src="./assets/logo/logo.png" height="40" alt="logo">
+                    </a>
+
+                    <!-- Custom Language Toggles added to original structure -->
+                    <div class="ms-auto order-last d-flex align-items-center gap-2">
+                        <button id="btn-es" class="btn btn-sm btn-primary text-white fw-bold" onclick="setLanguage('es')">ES</button>
+                        <button id="btn-en" class="btn btn-sm btn-outline-primary fw-bold text-white" style="border-color: rgba(255,255,255,0.5)" onclick="setLanguage('en')">EN</button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="position-absolute z-0 top-0 h-100 w-100 d-flex align-items-center pt-5">
+		    <div class="container h-100 d-flex align-items-center">
+                <div class="max-w-3xl mx-auto text-center mt-6">
+                    <h1 class="m-0 text-white tracking-tight text-6xl fw-bold">
+                        <span class="lang-es">Toma el control de tu dinero. <br><span class="text-primary">Sin estrés. Sin jerga.</span></span>
+                        <span class="lang-en">Take control of your money. <br><span class="text-primary">No stress. No jargon.</span></span>
+                    </h1>
+                    <p class="m-0 mt-4 text-white text-lg leading-8 px-md-5">
+                        <span class="lang-es">Hola, soy Lucas. Ayudo a profesionales y familias jóvenes en Madrid (y online) a organizar sus finanzas, ahorrar con sentido e invertir inteligentemente para el futuro.</span>
+                        <span class="lang-en">Hi, I'm Lucas. I help young professionals and families in Madrid (and online) organize their finances, save with purpose, and invest smartly for the future.</span>
+                    </p>
+                    <div class="mt-5">
+                        <a href="#contacto" class="btn btn-primary btn-lg text-white px-5 py-3 rounded-pill fw-bold shadow-lg fs-5">
+                            <span class="lang-es">Agenda tu sesión gratuita de 30 min</span>
+                            <span class="lang-en">Book your free 30-min session</span>
+                        </a>
+                    </div>
+                </div>
+		    </div>
+	    </div>
+	</div>
+
+	<div class="overflow-hidden">
+		<div class="container">
+			<div class="max-w-2xl mx-auto text-center pt-7 pb-5">
+				<h2 class="m-0 text-primary-emphasis text-base leading-7 fw-semibold text-uppercase tracking-wide">
+					<span class="lang-es">Servicios Principales</span>
+                    <span class="lang-en">Core Services</span>
+				</h2>
+				<div class="m-0 mt-2 text-body-emphasis text-4xl leading-snug tracking-tight fw-bold">
+					<span class="lang-es">Estrategias a tu medida para escalar tu patrimonio.</span>
+                    <span class="lang-en">Tailored strategies to scale your wealth.</span>
+				</div>
+			</div>
+		</div>
+
+        <!-- Services Grid -->
+        <div class="container mb-5">
+            <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
+                
+                <!-- Portfolio Card -->
+                <div class="col">
+                    <div class="d-flex flex-column h-100 p-4 bg-body-tertiary shadow rounded-4 position-relative border-start border-primary border-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="p-2 bg-primary bg-opacity-10 rounded-3 text-primary me-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-pie-chart-fill" viewBox="0 0 16 16">
+                                  <path d="M15.985 8.5H8.207l-5.5 5.5a8 8 0 0 0 13.277-5.5zM2 13.292A8 8 0 0 1 7.5.015v7.778zM8.5.015V7.5h7.485A8.001 8.001 0 0 0 8.5.015"/>
+                                </svg>
+                            </div>
+                            <h3 class="h4 m-0 fw-bold text-body-emphasis">
+                                <span class="lang-es">Diseño de Cartera</span>
+                                <span class="lang-en">Portfolio Design</span>
+                            </h3>
+                        </div>
+                        <p class="text-body-secondary text-base m-0 flex-grow-1 lh-lg">
+                            <span class="lang-es">Creación de una estrategia de inversión totalmente adaptada a tu perfil de riesgo y objetivos vitales. Sin productos opacos, solo lo que necesitas.</span>
+                            <span class="lang-en">Creation of an investment strategy fully tailored to your risk profile and life goals. No opaque products, just what you need.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Budget Card -->
+                <div class="col">
+                    <div class="d-flex flex-column h-100 p-4 bg-body-tertiary shadow rounded-4 position-relative border-start border-primary border-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="p-2 bg-primary bg-opacity-10 rounded-3 text-primary me-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                                  <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.616-.481zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                                </svg>
+                            </div>
+                            <h3 class="h4 m-0 fw-bold text-body-emphasis">
+                                <span class="lang-es">Plan de Presupuesto</span>
+                                <span class="lang-en">Smart Budgeting</span>
+                            </h3>
+                        </div>
+                        <p class="text-body-secondary text-base m-0 flex-grow-1 lh-lg">
+                            <span class="lang-es">Elaboración de un presupuesto mensual y un plan de gasto inteligente para que disfrutes de tu vida hoy, mientras tu patrimonio crece.</span>
+                            <span class="lang-en">Development of a monthly budget and smart spending plan so you can enjoy your life today, while your wealth grows.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Habits Card -->
+                <div class="col">
+                    <div class="d-flex flex-column h-100 p-4 bg-body-tertiary shadow rounded-4 position-relative border-start border-primary border-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="p-2 bg-primary bg-opacity-10 rounded-3 text-primary me-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-rocket-takeoff-fill" viewBox="0 0 16 16">
+                                  <path d="M12.17 9.53c2.307-2.592 3.278-4.684 3.641-6.218.21-.887.214-1.58.16-2.065a3.6 3.6 0 0 0-.108-.58 1.5 1.5 0 0 0-.749-.93c-.426-.206-.942-.31-1.554-.31-.41 0-.825.045-1.248.13-1.53.308-3.619 1.258-6.196 3.539C2.748 6.136 1.157 9.176.4 11.535c-.172.535-.224 1.1-.144 1.62.072.477.34.896.757 1.13.418.234.921.267 1.411.082.493-.186 1.004-.57 1.573-1.096C5.513 11.954 8.647 10.37 12.17 9.53zM10.854 5.146a.5.5 0 1 1-.708-.708.5.5 0 0 1 .708.708"/>
+                                </svg>
+                            </div>
+                            <h3 class="h4 m-0 fw-bold text-body-emphasis">
+                                <span class="lang-es">Hábitos de Ahorro</span>
+                                <span class="lang-en">Saving Habits</span>
+                            </h3>
+                        </div>
+                        <p class="text-body-secondary text-base m-0 flex-grow-1 lh-lg">
+                            <span class="lang-es">Programa práctico paso a paso. Aprenderás a poner tus ahorros en piloto automático y a crear hábitos financieros para toda la vida.</span>
+                            <span class="lang-en">Practical step-by-step program. You will learn to put your savings on autopilot and create lifelong financial habits.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+
+    <!-- Differentiators Section -->
+    <div class="container my-6">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-5 mb-5 mb-lg-0 pe-lg-5">
+                <h2 class="fw-bold display-6 mb-4 text-body-emphasis">
+                    <span class="lang-es">¿Por qué trabajar conmigo?</span>
+                    <span class="lang-en">Why work with me?</span>
+                </h2>
+                <p class="text-body-secondary fs-5 lh-lg mb-4">
+                    <span class="lang-es">El mundo financiero está lleno de términos complejos y procesos aburridos. Yo lo hago fácil, transparente y 100% enfocado en tus objetivos personales.</span>
+                    <span class="lang-en">The financial world is full of complex terms and boring processes. I make it easy, transparent, and 100% focused on your personal goals.</span>
+                </p>
+            </div>
+            
+            <div class="col-12 col-lg-7">
+                <div class="p-5 bg-body-tertiary shadow rounded-4">
+                    <!-- Feature 1 -->
+                    <div class="d-flex mb-4">
+                        <div class="text-primary mt-1 me-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold h5 mb-1 text-body-emphasis">
+                                <span class="lang-es">Enfoque sencillo y sin jerga</span>
+                                <span class="lang-en">Simple & jargon-free approach</span>
+                            </h4>
+                            <p class="text-body-secondary mb-0">
+                                <span class="lang-es">Hablamos claro. Finanzas que cualquiera puede entender sin necesidad de ser economista.</span>
+                                <span class="lang-en">Clear talk. Finance that anyone can understand without needing to be an economist.</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="d-flex mb-4">
+                        <div class="text-primary mt-1 me-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold h5 mb-1 text-body-emphasis">
+                                <span class="lang-es">100% Digital y Seguimiento Mensual</span>
+                                <span class="lang-en">100% Digital & Monthly Tracking</span>
+                            </h4>
+                            <p class="text-body-secondary mb-0">
+                                <span class="lang-es">Uso de herramientas digitales y reuniones mes a mes para asegurar que el plan se cumple.</span>
+                                <span class="lang-en">Use of digital tools and month-by-month meetings to ensure the plan stays on track.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="d-flex">
+                        <div class="text-primary mt-1 me-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold h5 mb-1 text-body-emphasis">
+                                <span class="lang-es">Atención Bilingüe (ES/EN)</span>
+                                <span class="lang-en">Bilingual Service (ES/EN)</span>
+                            </h4>
+                            <p class="text-body-secondary mb-0">
+                                <span class="lang-es">Estrategias, planes y sesiones disponibles en español e inglés adaptados a tus necesidades.</span>
+                                <span class="lang-en">Strategies, plans, and sessions available in both Spanish and English tailored to your needs.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+	<div id="contacto" class="py-5">
+		<div class="container">
+			<div class="my-5 position-relative rounded-4 shadow bg-primary bg-gradient">
+				<span class="badge position-absolute translate-middle-y top-0 start-0 text-bg-warning text-dark px-4 py-2 rounded-4 ms-4 ms-sm-5 fs-6 fw-bold shadow-sm">
+                    <span class="lang-es">Siguiente paso</span>
+                    <span class="lang-en">Next step</span>
+                </span>
+
+				<div class="p-5 d-flex flex-wrap justify-content-between align-items-center row-gap-4">
+					<div class="col-12 col-lg-7 text-white">
+                        <h2 class="fw-bold mb-3 mt-3">
+                            <span class="lang-es">Agenda tu Diagnóstico Financiero de 30 min GRATIS</span>
+                            <span class="lang-en">Book your 30-min Financial Diagnosis for FREE</span>
+                        </h2>
+                        <p class="fs-5 mb-0 opacity-75">
+                            <span class="lang-es">Veamos dónde estás, cuáles son tus barreras actuales y tracemos el plan para llegar a donde quieres. Cien por cien gratis y sin ningún compromiso.</span>
+                            <span class="lang-en">Let's see where you are, identify your current barriers, and map out the plan to get you where you want to be. 100% free and no strings attached.</span>
+                        </p>
+                    </div>
+
+					<div class="col-12 col-lg-4">
+						<a href="https://wa.me/34600000000" target="_blank" class="btn btn-light text-primary btn-lg w-100 fw-bold shadow-sm py-3 mb-3 d-flex justify-content-center align-items-center gap-2">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-whatsapp text-success" viewBox="0 0 16 16">
+                              <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.396.366 2.76 1.061 3.961L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                            </svg>
+							<span class="lang-es">Hablemos por WhatsApp</span>
+                            <span class="lang-en">Chat on WhatsApp</span>
+						</a>
+                        <a href="mailto:hola@lucasfinance.ejemplo" class="btn border border-white text-white btn-lg w-100 fw-bold bg-white bg-opacity-10 py-3">
+							<span class="lang-es">Enviar un Email</span>
+                            <span class="lang-en">Send an Email</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="overflow-hidden py-5 bg-body-tertiary rounded-top-3 shadow-sm border-top">
+		<div class="container text-center">
+            <h4 class="fw-bold mb-3">
+                <img src="./assets/logo/logo.png" height="30" alt="logo" class="me-2"> 
+                Lucas<span class="text-primary">.Finance</span>
+            </h4>
+            <p class="text-body-secondary small mb-0">
+                <span class="lang-es">&copy; 2026 Lucas Planificador Financiero. Todos los derechos reservados.<br>La información proporcionada es orientativa y no constituye asesoramiento financiero regulado.</span>
+                <span class="lang-en">&copy; 2026 Lucas Financial Planner. All rights reserved.<br>The information provided is for educational purposes and does not constitute regulated financial advice.</span>
+            </p>
+		</div>
+	</footer>
+
+</body>
+</html>
