@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es" dir="ltr" data-bs-theme="auto">
 <head>
-    <script src="./assets/js/color-modes.js"></script>
+    <script src="./assets/js/color-modes.js" defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Financial Planning by Lucas">
@@ -17,12 +17,14 @@
 	<link rel="manifest" href="./assets/logo/site.webmanifest">
 
     <!-- Stylesheets -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070&auto=format&fit=crop" fetchpriority="high">
     <link rel="stylesheet" href="./assets/libraries/aos/aos.css">
     <link rel="stylesheet" href="./assets/css/main.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
  	
     <!-- MICROSOFT CLARITY -->
-	<script type="text/javascript">
+	<script>
 		(function(c,l,a,r,i,t,y){
 			c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
 			t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -48,6 +50,44 @@
             background-size: cover;
             background-position: center;
         }
+    
+        /* Header spacing refinement */
+        .hero-bg > header .container {
+            padding-left: clamp(1.25rem, 3vw, 3rem);
+            padding-right: clamp(1.25rem, 3vw, 3rem);
+        }
+
+        .hero-bg > header .navbar-brand {
+            margin-right: 2.5rem;
+        }
+
+        .hero-bg > header .ms-auto {
+            margin-left: 2.5rem !important;
+        }
+
+        .hero-bg > header .d-flex.gap-2 {
+            gap: .625rem !important;
+        }
+
+        @media (max-width: 575.98px) {
+            .hero-bg > header {
+                margin-top: 1.25rem !important;
+            }
+
+            .hero-bg > header .navbar-brand {
+                margin-right: 1rem;
+            }
+
+            .hero-bg > header .ms-auto {
+                margin-left: 1rem !important;
+            }
+
+            .hero-bg > header .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
     </style>
 
     <script>
@@ -73,6 +113,10 @@
     </script>
 </head>
 <body>
+    <a class="visually-hidden-focusable position-fixed top-0 start-0 z-3 p-3 bg-body text-body-emphasis rounded-end" href="#contacto">
+        <span class="lang-es">Saltar al contenido</span>
+        <span class="lang-en">Skip to content</span>
+    </a>
 
 	<!-- header body -->
 	<div class="overflow-hidden py-9 py-xl-10 position-relative rounded-bottom-3 rounded-sm-4 rounded-xl-5 m-0 m-sm-2 m-xl-3 shadow hero-bg">
@@ -82,13 +126,13 @@
             <nav class="navbar navbar-expand-xl" aria-label="Offcanvas navbar large">
                 <div class="container py-1">
                     <a href="./index.html" class="navbar-brand">
-                        <img src="./assets/logo/logo.png" height="40" alt="logo">
+                        <img src="./assets/logo/logo.png" width="40" height="40" alt="Lucas Finance" decoding="async">
                     </a>
 
                     <!-- Custom Language Toggles added to original structure -->
                     <div class="ms-auto order-last d-flex align-items-center gap-2">
-                        <button id="btn-es" class="btn btn-sm btn-primary text-white fw-bold" onclick="setLanguage('es')">ES</button>
-                        <button id="btn-en" class="btn btn-sm btn-outline-primary fw-bold text-white" style="border-color: rgba(255,255,255,0.5)" onclick="setLanguage('en')">EN</button>
+                        <button id="btn-es" class="btn btn-sm btn-primary text-white fw-bold" type="button" aria-label="Cambiar idioma a español" onclick="setLanguage('es')">ES</button>
+                        <button id="btn-en" class="btn btn-sm btn-outline-primary fw-bold text-white" style="border-color: rgba(255,255,255,0.5)" type="button" aria-label="Switch language to English" onclick="setLanguage('en')">EN</button>
                     </div>
                 </div>
             </nav>
@@ -106,27 +150,25 @@
                         <span class="lang-en">Hi, I'm Lucas. I help young professionals and families in Madrid (and online) organize their finances, save with purpose, and invest smartly for the future.</span>
                     </p>
                     <div class="mt-5">
-                        <a href="#contacto" class="btn btn-primary btn-lg text-white px-5 py-3 rounded-pill fw-bold shadow-lg fs-5">
-                            <span class="lang-es">Agenda tu sesión gratuita de 30 min</span>
-                            <span class="lang-en">Book your free 30-min session</span>
-                        </a>
+                    </a>
                     </div>
                 </div>
 		    </div>
 	    </div>
 	</div>
 
-	<div class="overflow-hidden">
+	<main>
+    <section class="overflow-hidden" aria-labelledby="services-title">
 		<div class="container">
 			<div class="max-w-2xl mx-auto text-center pt-7 pb-5">
 				<h2 class="m-0 text-primary-emphasis text-base leading-7 fw-semibold text-uppercase tracking-wide">
 					<span class="lang-es">Servicios Principales</span>
                     <span class="lang-en">Core Services</span>
 				</h2>
-				<div class="m-0 mt-2 text-body-emphasis text-4xl leading-snug tracking-tight fw-bold">
+				<h2 id="services-title" class="m-0 mt-2 text-body-emphasis text-4xl leading-snug tracking-tight fw-bold">
 					<span class="lang-es">Estrategias a tu medida para escalar tu patrimonio.</span>
                     <span class="lang-en">Tailored strategies to scale your wealth.</span>
-				</div>
+                </h2>
 			</div>
 		</div>
 
@@ -136,7 +178,7 @@
                 
                 <!-- Portfolio Card -->
                 <div class="col">
-                    <div class="d-flex flex-column h-100 p-4 bg-body-tertiary shadow rounded-4 position-relative border-start border-primary border-4">
+                    <div class="service-card d-flex flex-column h-100 p-4 bg-body-tertiary shadow rounded-4 position-relative border-start border-primary border-4">
                         <div class="d-flex align-items-center mb-3">
                             <div class="p-2 bg-primary bg-opacity-10 rounded-3 text-primary me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-pie-chart-fill" viewBox="0 0 16 16">
@@ -157,7 +199,7 @@
 
                 <!-- Budget Card -->
                 <div class="col">
-                    <div class="d-flex flex-column h-100 p-4 bg-body-tertiary shadow rounded-4 position-relative border-start border-primary border-4">
+                    <div class="service-card d-flex flex-column h-100 p-4 bg-body-tertiary shadow rounded-4 position-relative border-start border-primary border-4">
                         <div class="d-flex align-items-center mb-3">
                             <div class="p-2 bg-primary bg-opacity-10 rounded-3 text-primary me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
@@ -178,7 +220,7 @@
 
                 <!-- Habits Card -->
                 <div class="col">
-                    <div class="d-flex flex-column h-100 p-4 bg-body-tertiary shadow rounded-4 position-relative border-start border-primary border-4">
+                    <div class="service-card d-flex flex-column h-100 p-4 bg-body-tertiary shadow rounded-4 position-relative border-start border-primary border-4">
                         <div class="d-flex align-items-center mb-3">
                             <div class="p-2 bg-primary bg-opacity-10 rounded-3 text-primary me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-rocket-takeoff-fill" viewBox="0 0 16 16">
@@ -200,11 +242,14 @@
         </div>
 	</div>
 
+    </section>
+    </main>
+
     <!-- Differentiators Section -->
-    <div class="container my-6">
+    <section class="container my-6" aria-labelledby="why-title">
         <div class="row align-items-center">
             <div class="col-12 col-lg-5 mb-5 mb-lg-0 pe-lg-5">
-                <h2 class="fw-bold display-6 mb-4 text-body-emphasis">
+                <h2 id="why-title" class="fw-bold display-6 mb-4 text-body-emphasis">
                     <span class="lang-es">¿Por qué trabajar conmigo?</span>
                     <span class="lang-en">Why work with me?</span>
                 </h2>
@@ -277,6 +322,8 @@
         </div>
     </div>
 
+    </section>
+
     <!-- CTA Section -->
 	<div id="contacto" class="py-5">
 		<div class="container">
@@ -288,7 +335,7 @@
 
 				<div class="p-5 d-flex flex-wrap justify-content-between align-items-center row-gap-4">
 					<div class="col-12 col-lg-7 text-white">
-                        <h2 class="fw-bold mb-3 mt-3">
+                        <h2 id="cta-title" class="fw-bold mb-3 mt-3">
                             <span class="lang-es">Agenda tu Diagnóstico Financiero de 30 min GRATIS</span>
                             <span class="lang-en">Book your 30-min Financial Diagnosis for FREE</span>
                         </h2>
@@ -299,7 +346,7 @@
                     </div>
 
 					<div class="col-12 col-lg-4">
-						<a href="https://wa.me/34600000000" target="_blank" class="btn btn-light text-primary btn-lg w-100 fw-bold shadow-sm py-3 mb-3 d-flex justify-content-center align-items-center gap-2">
+						<a href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="btn btn-light text-primary btn-lg w-100 fw-bold shadow-sm py-3 mb-3 d-flex justify-content-center align-items-center gap-2">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-whatsapp text-success" viewBox="0 0 16 16">
                               <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c-.003 1.396.366 2.76 1.061 3.961L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
                             </svg>
@@ -314,13 +361,13 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
 	<!-- Footer -->
 	<footer class="overflow-hidden py-5 bg-body-tertiary rounded-top-3 shadow-sm border-top">
 		<div class="container text-center">
             <h4 class="fw-bold mb-3">
-                <img src="./assets/logo/logo.png" height="30" alt="logo" class="me-2"> 
+                <img src="./assets/logo/logo.png" width="30" height="30" alt="Lucas Finance" class="me-2" decoding="async"> 
                 Lucas<span class="text-primary">.Finance</span>
             </h4>
             <p class="text-body-secondary small mb-0">
